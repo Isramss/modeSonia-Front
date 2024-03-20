@@ -3,7 +3,7 @@ import ConnexionForm from "../components/ConnexionForm";
 
 function Connexion() {
   return (
-    <div>
+    <div className="connexion">
       <ConnexionForm />
     </div>
   );

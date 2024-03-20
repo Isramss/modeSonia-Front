@@ -1,15 +1,20 @@
 import {
-  Box,
-  Button,
+  Container,
   FormControl,
-  FormLabel,
-  Heading,
   Input,
+  Stack,
+  Button,
+  Heading,
+  VStack,
+  Center,
+  Checkbox,
+  Link,
   useToast,
+  FormLabel,
 } from "@chakra-ui/react";
-import "../App.css";
-import axios from "axios";
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function InscriptionForm() {
   const Toast = useToast();
@@ -20,6 +25,7 @@ function InscriptionForm() {
     zipcode: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const CreatUser = async () => {
     try {
@@ -34,6 +40,7 @@ function InscriptionForm() {
         duration: 6000,
         isClosable: true,
       });
+      navigate("/connexion");
       setNewUser({
         name: { first: "", last: "" },
         email: "",
@@ -46,85 +53,147 @@ function InscriptionForm() {
     }
   };
   return (
-    <Box display="flex" flexDirection={"column"} maxW="600px" m="auto" mt="4">
-      <Heading as="h2" mb="4" textAlign="center" m={"20px"}>
-        Inscription
-      </Heading>
-      <form
-        className="FormInscription"
-        onSubmit={(e) => {
-          e.preventDefault();
-          CreatUser();
-        }}
-        action="Inscription">
-        <FormControl isRequired>
-          <FormLabel>Prénom:</FormLabel>
-          <Input
-            type="text"
-            value={newUser.name.first}
-            onChange={(e) =>
-              setNewUser({
-                ...newUser,
-                name: { ...newUser.name, first: e.target.value },
-              })
-            }
-          />
-        </FormControl>
-        <FormControl mb={4} isRequired>
-          <FormLabel>Nom:</FormLabel>
-          <Input
-            type="text"
-            value={newUser.name.last}
-            onChange={(e) =>
-              setNewUser({
-                ...newUser,
-                name: { ...newUser.name, last: e.target.value },
-              })
-            }
-          />
-        </FormControl>
-        <FormControl mb={4} isRequired>
-          <FormLabel>Email:</FormLabel>
+    <Container maxW="7xl" p={{ base: 5, md: 10 }}>
+      <Center>
+        <Stack spacing={4}>
+          <Stack align="center">
+            <Heading
+              fontSize="3xl"
+              textAlign="center"
+              className="title_inscription">
+              Inscription
+            </Heading>
+          </Stack>
+          <VStack
+            as="form"
+            className="FormInscription"
+            onSubmit={(e) => {
+              e.preventDefault();
+              CreatUser();
+            }}
+            action="Inscription"
+            spacing={8}
+            w={{ base: "sm", sm: "lg" }}
+            p={{ base: 5, sm: 6 }}>
+            <VStack spacing={0} w="100%">
+              <FormControl id="name" isRequired>
+                <FormLabel className="label">Prénom :</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Entrez votre prénom"
+                  value={newUser.name.first}
+                  rounded="md"
+                  onChange={(e) =>
+                    setNewUser({
+                      ...newUser,
+                      name: { ...newUser.name, first: e.target.value },
+                    })
+                  }
+                />
+              </FormControl>
+              <FormControl id="lastname" isRequired>
+                <FormLabel className="label">Nom :</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Entrez votre Nom"
+                  value={newUser.name.last}
+                  onChange={(e) =>
+                    setNewUser({
+                      ...newUser,
+                      name: { ...newUser.name, last: e.target.value },
+                    })
+                  }
+                  rounded="md"
+                />
+              </FormControl>
 
-          <Input
-            type="email"
-            value={newUser.email}
-            onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-          />
-        </FormControl>
-
-        <FormControl mb={4} isRequired>
-          <FormLabel>Code Postal:</FormLabel>
-          <Input
-            type="number"
-            value={newUser.zipcode}
-            onChange={(e) =>
-              setNewUser({ ...newUser, zipcode: e.target.value })
-            }
-          />
-        </FormControl>
-
-        <FormControl mb={4} isRequired>
-          <FormLabel>Mot de passe:</FormLabel>
-          <Input
-            type="password"
-            value={newUser.password}
-            onChange={(e) =>
-              setNewUser({ ...newUser, password: e.target.value })
-            }
-          />
-        </FormControl>
-        <Button
-          className="btn_inscription"
-          type="submit"
-          width="400px"
-          bg="#000"
-          color="white"
-          textAlign={"center"}>
-          Inscription
-        </Button>
-      </form>
-    </Box>
+              <FormControl id="email" isRequired>
+                <FormLabel className="label">Email :</FormLabel>
+                <Input
+                  type="email"
+                  placeholder="Entrer votre Email"
+                  rounded="md"
+                  value={newUser.email}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, email: e.target.value })
+                  }
+                />
+              </FormControl>
+              <FormControl
+                id="adresse"
+                position="relative"
+                bottom="1px"
+                isRequired>
+                <FormLabel className="label">Adresse :</FormLabel>
+                <Input
+                  type="address"
+                  rounded="md"
+                  placeholder="Entrez votre Adresse"
+                  value={newUser.address}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, address: e.target.value })
+                  }
+                />
+              </FormControl>
+              <FormControl
+                id="zipcode"
+                position="relative"
+                bottom="1px"
+                isRequired>
+                <FormLabel className="label">Code Postal :</FormLabel>
+                <Input
+                  type="number"
+                  rounded="md"
+                  placeholder="Entrez votre Code postal"
+                  value={newUser.zipcode}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, zipcode: e.target.value })
+                  }
+                />
+              </FormControl>
+              <FormControl
+                id="password"
+                position="relative"
+                bottom="1px"
+                isRequired>
+                <FormLabel className="label">Mot de passe :</FormLabel>
+                <Input
+                  rounded="md"
+                  type="password"
+                  placeholder="Entrez votre mot de passe"
+                  value={newUser.password}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, password: e.target.value })
+                  }
+                />
+              </FormControl>
+            </VStack>
+            <VStack w="100%">
+              <Stack direction="row" justifyContent="space-between" w="100%">
+                <Checkbox colorScheme="green" size="md">
+                  Remember me
+                </Checkbox>
+                <Link to="/connexion" fontSize={{ base: "md", sm: "md" }}>
+                  Connexion
+                </Link>
+              </Stack>
+              <Button
+                type="submit"
+                bg="black"
+                color="white"
+                _hover={{
+                  bg: "#white",
+                  color: "black",
+                }}
+                rounded="md"
+                w="100%">
+                Inscription
+              </Button>
+            </VStack>
+          </VStack>
+        </Stack>
+      </Center>
+    </Container>
   );
 }
 
