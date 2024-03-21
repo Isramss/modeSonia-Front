@@ -9,7 +9,9 @@ const NavBar = (props) => {
 
   return (
     <NavBarContainer {...props} bg="#DFCBB7">
-      <Link to="/">ModeSonia</Link>
+      <Link to="/" color={"black"}>
+        ModeSonia
+      </Link>
 
       <MenuToggle toggle={toggle} isOpen={isOpen} />
       <MenuLinks isOpen={isOpen} />
@@ -59,7 +61,7 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
 const MenuLinks = ({ isOpen }) => {
   const navigate = useNavigate();
   const userData = JSON.parse(localStorage.getItem("user"));
-  const userDataEmail = userData ? userData.user.email : "";
+  const userDataEmail = userData ? userData.user.name.first : "";
 
   const handleLogout = async () => {
     localStorage.removeItem("user");

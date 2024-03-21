@@ -20,6 +20,7 @@ function ConnexionForm() {
   const Toast = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -34,6 +35,7 @@ function ConnexionForm() {
       const { token } = response.data;
       const decodedUser = jwtDecode(token);
       localStorage.setItem("user", JSON.stringify(decodedUser));
+      localStorage.setItem("token", JSON.stringify(response.data.token));
       console.log("User connecté : ", decodedUser);
       Toast({
         title: "Connexion reussi! 👍",
@@ -41,6 +43,7 @@ function ConnexionForm() {
         duration: 3000,
         isClosable: true,
       });
+      setToken(response.data.token);
       navigate("/");
     } catch (error) {
       console.error("Erreur lors du login: ", error.message);
