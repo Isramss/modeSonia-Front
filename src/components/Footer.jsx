@@ -7,18 +7,14 @@ import {
   Divider,
   Image,
   Text,
-  Button,
 } from "@chakra-ui/react";
 
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { FaGithub } from "react-icons/fa";
-import { BsDiscord } from "react-icons/bs";
 
 const Footer = () => {
   const navigate = useNavigate();
   const userData = localStorage.getItem("user");
 
-  //   const userData = JSON.parse(localStorage.getItem("user"));
   const handleLogout = async () => {
     localStorage.removeItem("user");
     navigate("/login");
@@ -38,7 +34,7 @@ const Footer = () => {
             <Link as={RouterLink} to={"/"}>
               <Image w="100px" src="" alt="ModeSonia" />
             </Link>
-            <Text mt={2} color="gray.500" fontSize="md">
+            <Text mt={2} color="#b5b3b3" fontSize="md">
               ModeSonia est une entreprise tunisienne fondée en 2010,
               spécialisée dans la création de caftans traditionnels faits à la
               main. Notre passion pour l'artisanat et notre engagement envers la
@@ -50,10 +46,10 @@ const Footer = () => {
             d={{ base: "none", sm: "flex" }}
             justifyContent={{ sm: "space-between", md: "normal" }}>
             <VStack spacing={4} alignItems="flex-start">
-              <Text fontSize="md" fontWeight="bold">
+              <Text fontSize="md" fontWeight="bold" color="#b5b3b3">
                 Accueil
               </Text>
-              <VStack spacing={2} alignItems="flex-start" color="gray.500">
+              <VStack spacing={2} alignItems="flex-start" color="#b5b3b3">
                 <Link as={RouterLink} to={"/caftan"}>
                   Caftan
                 </Link>
@@ -90,8 +86,8 @@ const Footer = () => {
           spacing={3}
           justifyContent="space-between">
           <Link>
-            <Text mt={2} color="gray.500" fontSize="md">
-              Mentions lesgales |
+            <Text mt={2} color="#b5b3b3" fontSize="md">
+              Mentions lesgales | cdc
             </Text>
           </Link>
         </Stack>
@@ -99,17 +95,5 @@ const Footer = () => {
     </Box>
   );
 };
-
-// const CustomLink = ({ children, ...props }) => {
-//   return (
-//     <Link
-//       href="#"
-//       fontSize="sm"
-//       _hover={{ textDecoration: "underline" }}
-//       {...props}>
-//       {children}
-//     </Link>
-//   );
-// };
 
 export default Footer;

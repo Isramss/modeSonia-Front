@@ -1,24 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Box, Flex, Text, Button, Stack } from "@chakra-ui/react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 const NavBar = (props) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
   return (
     <NavBarContainer {...props} bg="#DFCBB7">
-      <Link to="/" color={"black"}>
+      <Link as={RouterLink} to="/" color={"black"}>
         ModeSonia
       </Link>
-
+      {/* partie menu burger => responsive mobile */}
       <MenuToggle toggle={toggle} isOpen={isOpen} />
-      <MenuLinks isOpen={isOpen} />
+      <MenuLinks isOpen={isOpen} /> {/* Affiche les liens (accueil ..) */}
     </NavBarContainer>
   );
 };
 
+{
+  /* Permet d'afficher l'icon X du menu burger  */
+}
 const CloseIcon = () => (
   <svg width="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
     <title>Close</title>
@@ -29,6 +32,9 @@ const CloseIcon = () => (
   </svg>
 );
 
+{
+  /* Permet d'afficher l'icon burger du menu burger  */
+}
 const MenuIcon = () => (
   <svg
     width="24px"
@@ -41,6 +47,9 @@ const MenuIcon = () => (
 );
 
 const MenuToggle = ({ toggle, isOpen }) => {
+  {
+    // Si l'icône X s'affiche, alors le menu est ouvert, sinon l'icône burger est affichée et le menu est fermé.
+  }
   return (
     <Box display={{ base: "block", md: "none" }} onClick={toggle}>
       {isOpen ? <CloseIcon /> : <MenuIcon />}
@@ -49,6 +58,7 @@ const MenuToggle = ({ toggle, isOpen }) => {
 };
 
 const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
+  // MenuItem estun composant qu'on rappel plus bas. Ce composant permet d'evter de re mettre link et text pour chaque lien du Menu.
   return (
     <Link href={to}>
       <Text display="block" {...rest}>
@@ -60,13 +70,20 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
 
 const MenuLinks = ({ isOpen }) => {
   const navigate = useNavigate();
-  const userData = JSON.parse(localStorage.getItem("user"));
-  const userDataEmail = userData ? userData.user.name.first : "";
+  // useNaviagate() => permet de rediriger au clique vers une autres URL (pages) sans avoir a passer par Link
+  const userData = JSON.parse(sessionStorage.getItem("user"));
+  // la ligne userData => permet de stocker les données dans la valeur userData, grâce à la clé "user".
+  const userDataName = userData ? userData.user.name.first : "";
+  // userDataEmail => Si il y a les données de userData alors tu m'affiche le nom (tout en rentrant dans le model user puis name puis first) sinon tu ne m'affiche rien.
+  const isAdmin = userData ? userData.user.isAdmin : false;
+
+  console.log("isAdmin:", isAdmin);
 
   const handleLogout = async () => {
-    localStorage.removeItem("user");
-    navigate("/login");
+    sessionStorage.removeItem("user");
+    navigate("/");
   };
+  // handleLogout => est une fonction à mettre dans un bouton elle permet lors du click de supprimer l'element stocké(cela montre que l'user est deconnecté) et d'etre rediriger avec navigate vers une autre URL.
 
   return (
     <Box
@@ -74,7 +91,7 @@ const MenuLinks = ({ isOpen }) => {
       flexBasis={{ base: "100%", md: "auto" }}
       className="BoxFormInscription">
       <Stack
-        spacing={8}
+        spacing={{ base: 4, md: 5 }}
         align="center"
         justify={["center", "space-between", "flex-end", "flex-end"]}
         direction={["column", "row", "row", "row"]}
@@ -84,10 +101,11 @@ const MenuLinks = ({ isOpen }) => {
         <MenuItem to="/apropos">À Propos</MenuItem>
         <MenuItem to="/contact">Nous contacter </MenuItem>
 
+        {isAdmin === true ? <MenuItem to="/users">Users </MenuItem> : null}
+
         {userData ? (
           <>
-            <MenuItem to="/users">Users </MenuItem>
-            <MenuItem>{userDataEmail} </MenuItem>
+            <MenuItem>{userDataName} </MenuItem>
 
             <Button
               onClick={handleLogout}

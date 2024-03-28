@@ -36,7 +36,9 @@ Link {
 }
 
 .title_inscription,
-.title_connexion {
+.title_connexion,
+.title_Caftan,
+.title_user {
   padding: 0px 0 20px 0;
 }
 
@@ -58,6 +60,52 @@ Link {
   display: flex;
   flex-direction: column;
   padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #dfcbb7;
+  background: rgba(255, 255, 255, 0.201);
+  backdrop-filter: blur(15px);
+}
+
+/* Page Caftan (title + Produire) */
+
+.displayCard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+@media screen and (max-width: 900px) {
+  .displayCard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .displayCard {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+}
+.Card {
+  border-radius: 10px;
+  border: #dfcbb7;
+}
+
+/* Page admin (liste utilisateur + form) */
+
+.box_user {
+  padding: 40px 0 60px 0;
+}
+
+.form_modal {
   border-radius: 10px;
   border: 1px solid #dfcbb7;
   background: rgba(255, 255, 255, 0.201);

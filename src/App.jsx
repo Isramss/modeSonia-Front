@@ -7,6 +7,7 @@ import Inscription from "./pages/Inscription";
 import Connexion from "./pages/Connexion";
 import Footer from "./components/Footer";
 import "./App.css";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/connexion" element={<Connexion />} />
+        <Route path="/users" element={<AdminPage />} />
       </Routes>
       <Footer />
     </Router>

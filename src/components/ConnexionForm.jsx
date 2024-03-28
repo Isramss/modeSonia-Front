@@ -6,14 +6,14 @@ import {
   Button,
   Heading,
   VStack,
+  Link,
   Center,
   Checkbox,
-  Link,
   useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { jwtDecode } from "jwt-decode";
-import { useNavigate } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function ConnexionForm() {
@@ -34,8 +34,8 @@ function ConnexionForm() {
       console.log(response.data);
       const { token } = response.data;
       const decodedUser = jwtDecode(token);
-      localStorage.setItem("user", JSON.stringify(decodedUser));
-      localStorage.setItem("token", JSON.stringify(response.data.token));
+      sessionStorage.setItem("user", JSON.stringify(decodedUser));
+      sessionStorage.setItem("token", JSON.stringify(response.data.token));
       console.log("User connecté : ", decodedUser);
       Toast({
         title: "Connexion reussi! 👍",
@@ -106,6 +106,12 @@ function ConnexionForm() {
                 <Checkbox colorScheme="green" size="md">
                   Remember me
                 </Checkbox>
+                <Link
+                  as={RouterLink}
+                  to="/inscription"
+                  fontSize={{ base: "md", sm: "md" }}>
+                  Inscription
+                </Link>
               </Stack>
               <Button
                 type="submit"

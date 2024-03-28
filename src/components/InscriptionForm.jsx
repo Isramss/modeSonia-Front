@@ -14,10 +14,11 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 function InscriptionForm() {
   const Toast = useToast();
+  const navigate = useNavigate();
   const [newUser, setNewUser] = useState({
     name: { first: "", last: "" },
     email: "",
@@ -25,7 +26,6 @@ function InscriptionForm() {
     zipcode: "",
     password: "",
   });
-  const navigate = useNavigate();
 
   const CreatUser = async () => {
     try {
@@ -173,7 +173,10 @@ function InscriptionForm() {
                 <Checkbox colorScheme="green" size="md">
                   Remember me
                 </Checkbox>
-                <Link to="/connexion" fontSize={{ base: "md", sm: "md" }}>
+                <Link
+                  as={RouterLink}
+                  to="/connexion"
+                  fontSize={{ base: "md", sm: "md" }}>
                   Connexion
                 </Link>
               </Stack>
@@ -182,7 +185,7 @@ function InscriptionForm() {
                 bg="black"
                 color="white"
                 _hover={{
-                  bg: "#white",
+                  bg: "white",
                   color: "black",
                 }}
                 rounded="md"
