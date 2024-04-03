@@ -1,8 +1,21 @@
-import { Box, Stack, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
-import React from "react";
-import { Link } from "react-router-dom";
+import {
+  Box,
+  Button,
+  Stack,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
 
-function UserList({ Users }) {
+import React from "react";
+
+function UserList({ users, deleteUsers }) {
+  const userData = JSON.parse(sessionStorage.getItem("user"));
+  const isAdmin = userData ? userData.user.isAdmin : false;
+
   return (
     <Box>
       <Table variant="striped">
@@ -10,17 +23,31 @@ function UserList({ Users }) {
           <Tr>
             <Th>Name</Th>
             <Th>Email</Th>
-            <Th>Code Postal</Th>
+            <Th display={{ base: "none", md: "table-cell" }}>Code Postal</Th>
           </Tr>
         </Thead>
         <Tbody>
-          {Users.map((User) => (
-            <Tr key={User._id}>
-              <Td>
-                <Link to={`/user/${User._id}`}>{User.fullname}</Link>
+          {users.map((user) => (
+            <Tr key={user._id}>
+              <Td>{user.fullname}</Td>
+              <Td>{user.email}</Td>
+              <Td display={{ base: "none", md: "table-cell" }}>
+                {user.zipcode}
               </Td>
-              <Td>{User.email}</Td>
-              <Td>{User.zipcode}</Td>
+
+              {isAdmin === true ? (
+                <Td key={`delete-${user._id}`}>
+                  <Button
+                    onClick={() => deleteUsers(user._id)}
+                    bg={"red"}
+                    color={"white"}
+                    _hover={{
+                      bg: "black",
+                    }}>
+                    X
+                  </Button>
+                </Td>
+              ) : null}
             </Tr>
           ))}
         </Tbody>

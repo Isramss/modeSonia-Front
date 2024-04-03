@@ -21,6 +21,7 @@ import { AddIcon } from "@chakra-ui/icons";
 
 function CreateUser({ updateUsers }) {
   const [isOpen, setIsOpen] = useState(false);
+
   const [userData, setUserData] = useState({
     name: { first: "", last: "" },
     email: "",
@@ -40,7 +41,7 @@ function CreateUser({ updateUsers }) {
         "http://localhost:4567/auth/inscription",
         userData
       );
-      updateUsers((prevUsers) => [...prevUsers, response.data]); // Cette ligne me permettra d'actualiser la liste des utilisateurs apres l'ajout du nouvel utilisateur
+
       toast({
         title: "Nouvel utilisateur créé",
         description: "Le nouvel utilisateur a été créé avec succès.",
@@ -49,6 +50,9 @@ function CreateUser({ updateUsers }) {
         isClosable: true,
       });
       setIsOpen(false);
+      setUserData(response.data);
+      updateUsers((prevUsers) => [...prevUsers, response.data]);
+      window.location.reload();
     } catch (error) {
       console.error("Error creating user:", error);
       toast({
@@ -80,12 +84,16 @@ function CreateUser({ updateUsers }) {
       </Button>
 
       <Modal isOpen={isOpen} onClose={handleClose} size="xl">
-        <ModalOverlay />
+        <ModalOverlay
+          bg="blackAlpha.300"
+          backdropFilter="blur(3px) hue-rotate(90deg)"
+        />
         <ModalContent
           maxW={{ base: "90%", md: "50%" }}
           maxH="90vh"
+          p={"10px"}
           className="form_modal"
-          bg={"#ffffff33"}>
+          bg={"#0000003c"}>
           <ModalHeader>Créer un utilisateur</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
