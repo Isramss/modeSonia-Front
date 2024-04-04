@@ -68,6 +68,10 @@ Link {
 
 /* Page Caftan (title + Produire) */
 
+.Caftans {
+  padding: 40px 0 60px 0;
+}
+
 .displayCard {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

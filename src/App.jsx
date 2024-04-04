@@ -3,11 +3,12 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import Caftan from "./pages/Caftan";
 import Contact from "./pages/Contact";
-import Inscription from "./pages/Inscription";
-import Connexion from "./pages/Connexion";
+import Inscription from "./pages/Auth/Inscription";
+import Connexion from "./pages/Auth/Connexion";
 import Footer from "./components/Footer";
 import "./App.css";
-import AdminPage from "./pages/AdminPage";
+import AdminPage from "./pages/Admin/AdminPage";
+import Pagenotfound from "./pages/Pagenotfound";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/users" element={<AdminPage />} />
+        <Route path="*" element={<Pagenotfound />} />
       </Routes>
       <Footer />
     </Router>

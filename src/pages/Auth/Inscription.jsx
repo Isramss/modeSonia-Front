@@ -1,6 +1,7 @@
 import React from "react";
-import InscriptionForm from "../components/InscriptionForm";
-import "../App.css";
+
+import InscriptionForm from "../../components/InscriptionForm";
+import "../../App.css";
 
 function Inscription() {
   return (

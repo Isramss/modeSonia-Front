@@ -11,24 +11,15 @@ import React from "react";
 
 function CardArticle({ imageURL, title_Produit, price }) {
   return (
-    <Center py={12}>
-      <Box
-      // role={"group"}
-      // p={6}
-      // maxW={"330px"}
-      // w={"full"}
-      // bg={useColorModeValue("white", "gray.800")}
-      // boxShadow={"2xl"}
-      // rounded={"lg"}
-      // pos={"relative"}
-      // zIndex={1}
-      // _hover={{ opacity: 0.6 }}
-      >
+    <Center p={0} m={0} mt={-5} _hover={{ opacity: 0.6 }}>
+      <Box pt={"10px"}>
         <Box
+          // maxH={"330px"}
           rounded={"lg"}
-          mt={-12}
+          // p={6}
+
           pos={"relative"}
-          height={"230px"}
+          height={"180px"}
           _after={{
             transition: "all .3s ease",
             content: '""',
@@ -47,17 +38,15 @@ function CardArticle({ imageURL, title_Produit, price }) {
             },
           }}>
           <Image
+            w={"250px"}
+            h={"280px"}
             src={imageURL}
             alt=""
             borderRadius="10px"
-            maxH={"300px"}
-            maxW={"450px"}
+            align="center"
           />
         </Box>
-        <Stack pt={10} align={"center"}>
-          <Text color={"gray.500"} fontSize={"sm"} textTransform={"uppercase"}>
-            Brand
-          </Text>
+        <Stack pt={20} align={"center"} mt={30}>
           <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
             {title_Produit}
           </Heading>

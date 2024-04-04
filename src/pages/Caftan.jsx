@@ -2,8 +2,8 @@ import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import AllCaftan from "../components/AllCaftan";
-import FormArticleAdmin from "../components/FormArticleAdmin";
+import AllCaftan from "../components/Articles/AllCaftan";
+import FormArticleAdmin from "../components/Articles/FormArticleAdmin";
 
 function Caftan() {
   const [caftans, setCaftans] = useState([]);
@@ -24,7 +24,7 @@ function Caftan() {
     displayArticle();
   }, []);
 
-  const updateArticle = (newArticle) => {
+  const reloadArticle = (newArticle) => {
     setCaftans(newArticle);
     // window.location.reload();
   };
@@ -46,10 +46,25 @@ function Caftan() {
     }
   };
 
+  const updateArticle = async (caftanId) => {
+    try {
+      // const articleToUpdate = caftans.find((caftan) => caftan._id === caftanId);
+
+      await axios.put(`http://localhost:4567/articles/update/${caftanId}`);
+      setCaftans(caftans.filter((caftan) => caftan._id !== caftanId));
+    } catch (error) {
+      console.error("L'article n'a pas été modifié:", error);
+    }
+  };
+
   return (
-    <div>
-      <FormArticleAdmin updateArticle={updateArticle} />
-      <AllCaftan caftans={caftans} deleteArticle={deleteArticle} />
+    <div className="Caftans">
+      <FormArticleAdmin reloadArticle={reloadArticle} />
+      <AllCaftan
+        caftans={caftans}
+        deleteArticle={deleteArticle}
+        updateArticle={updateArticle}
+      />
     </div>
   );
 }

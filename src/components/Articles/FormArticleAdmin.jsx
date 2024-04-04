@@ -1,6 +1,5 @@
 import { AddIcon } from "@chakra-ui/icons";
 import {
-  Box,
   Button,
   FormControl,
   FormLabel,
@@ -18,7 +17,7 @@ import {
 import axios from "axios";
 import React, { useState } from "react";
 
-function FormArticleAdmin({ updateArticle }) {
+function FormArticleAdmin({ reloadArticle }) {
   const [isOpen, setIsOpen] = useState(false);
   const [newArticle, setNewArticle] = useState({
     title_Produit: "",
@@ -45,7 +44,7 @@ function FormArticleAdmin({ updateArticle }) {
         price: "",
         description: "",
       });
-      updateArticle((prevArticles) => [...prevArticles, response.data]);
+      reloadArticle((prevArticles) => [...prevArticles, response.data]);
       // Réinitialiser le formulaire après la création de l'article
       window.location.reload();
     } catch (error) {

@@ -1,10 +1,10 @@
 import React from "react";
-import CreateUser from "../components/CreateUser";
+import CreateUser from "../../components/users/CreateUser";
 import { useState } from "react";
 import { useEffect } from "react";
-import UserList from "../components/UserList";
+import UserList from "../../components/users/UserList";
 import axios from "axios";
-import "../App.css";
+import "../../App.css";
 import { useToast } from "@chakra-ui/react";
 
 function AdminPage() {

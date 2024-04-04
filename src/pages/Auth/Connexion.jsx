@@ -1,5 +1,5 @@
 import React from "react";
-import ConnexionForm from "../components/ConnexionForm";
+import ConnexionForm from "../../components/users/ConnexionForm";
 
 function Connexion() {
   return (
