@@ -7,6 +7,7 @@ import {
   VStack,
   useBreakpointValue,
 } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 
 function Hero() {
   return (
@@ -35,6 +36,7 @@ function Hero() {
           </Text>
           <Stack direction={"row"}>
             <Button
+              as={RouterLink}
               to="/caftan"
               cursor="pointer"
               bg={"black"}
@@ -44,6 +46,8 @@ function Hero() {
               Voir plus
             </Button>
             <Button
+              as={RouterLink}
+              to="/contact"
               bg={
                 // "whiteAlpha.300"
                 "white"

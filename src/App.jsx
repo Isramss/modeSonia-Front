@@ -6,9 +6,10 @@ import Contact from "./pages/Contact";
 import Inscription from "./pages/Auth/Inscription";
 import Connexion from "./pages/Auth/Connexion";
 import Footer from "./components/Footer";
-import "./App.css";
 import AdminPage from "./pages/Admin/AdminPage";
 import Pagenotfound from "./pages/Pagenotfound";
+import PageArticle from "./pages/PageProd";
+import "./App.css";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/users" element={<AdminPage />} />
+        <Route path="/caftan/:caftanId" element={<PageArticle />} />
+
         <Route path="*" element={<Pagenotfound />} />
       </Routes>
       <Footer />

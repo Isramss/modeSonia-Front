@@ -1,8 +1,8 @@
 import React from "react";
-import CreateUser from "../../components/users/CreateUser";
+import CreateUser from "../../components/Admin/CreateUser";
 import { useState } from "react";
 import { useEffect } from "react";
-import UserList from "../../components/users/UserList";
+import UserList from "../../components/Admin/UserList";
 import axios from "axios";
 import "../../App.css";
 import { useToast } from "@chakra-ui/react";
@@ -51,6 +51,7 @@ function AdminPage() {
     setUsers(newUsers);
     // window.location.reload();
   };
+
   return (
     <>
       {isAdmin ? (

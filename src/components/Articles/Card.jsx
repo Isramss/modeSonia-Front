@@ -47,7 +47,11 @@ function CardArticle({ imageURL, title_Produit, price }) {
           />
         </Box>
         <Stack pt={20} align={"center"} mt={30}>
-          <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
+          <Heading
+            fontSize={"2xl"}
+            color="#94918e"
+            fontFamily={"futura"}
+            fontWeight={500}>
             {title_Produit}
           </Heading>
           <Stack direction={"row"} align={"center"}>

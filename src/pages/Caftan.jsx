@@ -1,22 +1,20 @@
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import AllCaftan from "../components/Articles/AllCaftan";
 import FormArticleAdmin from "../components/Articles/FormArticleAdmin";
+import HeroCaftans from "../components/HeroCaftans";
 
 function Caftan() {
   const [caftans, setCaftans] = useState([]);
-  const caftanId = useParams();
   const toast = useToast();
 
   useEffect(() => {
-    const displayArticle = async (req, res) => {
+    const displayArticle = async () => {
       try {
         const response = await axios.get("http://localhost:4567/articles/");
-        console.log(response.data);
-        console.log(response.data.map((caftan) => caftanId));
         setCaftans(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -26,13 +24,11 @@ function Caftan() {
 
   const reloadArticle = (newArticle) => {
     setCaftans(newArticle);
-    // window.location.reload();
   };
 
   const deleteArticle = async (caftanId) => {
     try {
       const articleToDelete = caftans.find((caftan) => caftan._id === caftanId);
-
       await axios.delete(`http://localhost:4567/articles/delete/${caftanId}`);
       setCaftans(caftans.filter((caftan) => caftan._id !== caftanId));
       toast({
@@ -46,19 +42,52 @@ function Caftan() {
     }
   };
 
-  const updateArticle = async (caftanId) => {
+  const updateArticle = async (articleToUpdate) => {
     try {
-      // const articleToUpdate = caftans.find((caftan) => caftan._id === caftanId);
+      const response = await axios.put(
+        `http://localhost:4567/articles/update/${articleToUpdate._id}`,
+        articleToUpdate
+      );
 
-      await axios.put(`http://localhost:4567/articles/update/${caftanId}`);
-      setCaftans(caftans.filter((caftan) => caftan._id !== caftanId));
+      if (response.status === 200) {
+        // Ici la liste se met à jour
+        setCaftans(
+          caftans.map((caftan) =>
+            caftan._id === articleToUpdate._id ? articleToUpdate : caftan
+          )
+        );
+        toast({
+          title: "Article mis à jour avec succès",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+      } else {
+        //mise a jour echoué (relou)
+        toast({
+          title: "Erreur lors de la mise à jour de l'article",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      }
     } catch (error) {
       console.error("L'article n'a pas été modifié:", error);
+      // erreur mise à joue
+      toast({
+        title: "Erreur lors de la mise à jour de l'article",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     }
   };
 
   return (
-    <div className="Caftans">
+    <div
+    // className="Caftans"
+    >
+      <HeroCaftans />
       <FormArticleAdmin reloadArticle={reloadArticle} />
       <AllCaftan
         caftans={caftans}
