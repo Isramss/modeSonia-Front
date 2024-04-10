@@ -14,11 +14,11 @@ function HeroCaftans() {
       w={"full"}
       h={"250px"}
       backgroundImage={
-        "url(https://www.arbayadress.com/cdn/shop/files/Facetune_09-07-2023-17-45-25.heic?v=1688923601&width=2200)"
+        "url(https://cerevebleu.fr/wp-content/uploads/2020/10/Caftan-dun-Soir-5-1200x1200.jpg)"
       }
       backgroundSize={"cover"}
       background-attachment="local"
-      backgroundPosition={"centre bottom"}>
+      backgroundPosition={"center"}>
       <VStack
         w={"full"}
         justify={"center"}

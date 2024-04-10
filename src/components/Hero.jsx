@@ -17,6 +17,7 @@ function Hero() {
       backgroundImage={
         "url(https://www.arbayadress.com/cdn/shop/files/Facetune_09-07-2023-17-45-25.heic?v=1688923601&width=2200)"
       }
+      boxShadow={"2xl"}
       backgroundSize={"cover"}
       background-attachment="local"
       backgroundPosition={"centre bottom"}>

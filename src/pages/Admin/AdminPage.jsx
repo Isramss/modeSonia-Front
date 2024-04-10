@@ -6,13 +6,13 @@ import UserList from "../../components/Admin/UserList";
 import axios from "axios";
 import "../../App.css";
 import { useToast } from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
 
 function AdminPage() {
   const [users, setUsers] = useState([]);
   const userDataAd = JSON.parse(sessionStorage.getItem("user"));
   const isAdmin = userDataAd ? userDataAd.user.isAdmin : false;
   const toast = useToast();
-  //   const { usersId } = useParams();
 
   useEffect(() => {
     const listUser = async () => {
@@ -47,17 +47,53 @@ function AdminPage() {
     }
   };
 
-  const updateUsers = (newUsers) => {
+  const reloadUsers = (newUsers) => {
     setUsers(newUsers);
     // window.location.reload();
+  };
+
+  const updateUsers = async (userToUpdate) => {
+    try {
+      const res = await axios.put(
+        `http://localhost:4567/auth/edit/${userToUpdate._id}`,
+        userToUpdate
+      );
+      if (res.status === 200) {
+        // Ici la liste se met à jour
+        setUsers((user) =>
+          user._id === userToUpdate._id ? userToUpdate : user
+        );
+
+        toast({
+          title: "Utilisateur mis à jour avec succès",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+      } else {
+        //mise a jour echoué (relou)
+        toast({
+          title: "Erreur lors de la mise à jour de l'utilisateur",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      console.error("L'user n'a pas été modifié:", error);
+    }
   };
 
   return (
     <>
       {isAdmin ? (
         <div className="box_user">
-          <CreateUser updateUsers={updateUsers} />
-          <UserList users={users} deleteUsers={deleteUsers} />
+          <CreateUser reloadUsers={reloadUsers} />
+          <UserList
+            users={users}
+            deleteUsers={deleteUsers}
+            updateUsers={updateUsers}
+          />
         </div>
       ) : null}
     </>

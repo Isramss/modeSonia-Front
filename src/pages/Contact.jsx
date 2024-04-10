@@ -30,17 +30,16 @@ function Contact() {
   return (
     <Container
       backgroundImage={
-        "url(https://vicedi.com/wp-content/uploads/2019/04/detail-caftan-du-maroc-1024x500.jpg) "
+        "url(https://cerevebleu.fr/wp-content/uploads/2020/10/Caftan-dun-Soir-3-1-1200x800.jpg) "
       }
       backgroundSize={"cover"}
-      // backdropBlur="10px"
       maxW="full"
       mt={0}
       centerContent
       overflow="hidden">
       <Flex>
         <Box
-          bg="#000000"
+          bg="#000000a7"
           color="white"
           borderRadius="lg"
           m={{ sm: 4, md: 16, lg: 10 }}

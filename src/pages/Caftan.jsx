@@ -46,6 +46,7 @@ function Caftan() {
     try {
       const response = await axios.put(
         `http://localhost:4567/articles/update/${articleToUpdate._id}`,
+
         articleToUpdate
       );
 

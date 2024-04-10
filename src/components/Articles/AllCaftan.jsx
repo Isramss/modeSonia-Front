@@ -85,7 +85,7 @@
 // }
 
 // export default AllCaftan;
-import { CloseIcon, EditIcon } from "@chakra-ui/icons";
+import { CloseIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   Box,
   useColorModeValue,
@@ -223,19 +223,32 @@ function AllCaftan({ caftans, deleteArticle, updateArticle }) {
                 ) : (
                   <>
                     {isAdmin && (
-                      <Stack display={"row"} pb="10px">
+                      <Stack display={"row"} pb="10px" cursor="pointer">
+                        <Button
+                          mt={-5}
+                          onClick={() => handleEditClick(index)}
+                          bg={"black"}
+                          height={"25px"}
+                          color={"white"}
+                          _hover={{
+                            color: "black",
+                            bg: "none",
+                          }}>
+                          <EditIcon />
+                        </Button>
                         <Button
                           mt={-5}
                           onClick={() => deleteArticle(caftan._id)}
                           bg={"none"}
-                          height={"15px"}
-                          width={"1px"}
+                          marginLeft={"5px"}
+                          height={"25px"}
                           color={"red"}
                           _hover={{
                             color: "white",
                             bg: "black",
                           }}>
-                          <CloseIcon />
+                          <DeleteIcon />
+                          {/* <CloseIcon /> */}
                         </Button>
                       </Stack>
                     )}
@@ -248,21 +261,6 @@ function AllCaftan({ caftans, deleteArticle, updateArticle }) {
                         description={caftan.description}
                       />
                     </Link>
-                    {isAdmin ? (
-                      <Button
-                        mt={5}
-                        // marginLeft="30px"
-                        onClick={() => handleEditClick(index)}
-                        bg={"black"}
-                        height={"25px"}
-                        color={"white"}
-                        _hover={{
-                          color: "black",
-                          bg: "none",
-                        }}>
-                        <EditIcon />
-                      </Button>
-                    ) : null}
                   </>
                 )}
               </Box>

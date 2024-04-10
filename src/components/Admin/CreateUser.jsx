@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 
-function CreateUser({ updateUsers }) {
+function CreateUser({ reloadUsers }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const [userData, setUserData] = useState({
@@ -51,7 +51,7 @@ function CreateUser({ updateUsers }) {
       });
       setIsOpen(false);
       setUserData(response.data);
-      updateUsers((prevUsers) => [...prevUsers, response.data]);
+      reloadUsers((prevUsers) => [...prevUsers, response.data]);
       window.location.reload();
     } catch (error) {
       console.error("Error creating user:", error);
@@ -67,21 +67,29 @@ function CreateUser({ updateUsers }) {
   };
 
   return (
-    <Stack align="center">
-      <Heading fontSize="3xl" textAlign="center" className="title_user">
-        La liste des clients
-      </Heading>
-      <Button
-        leftIcon={<AddIcon />}
-        bg={"black"}
-        color={"white"}
-        _hover={{
-          color: "black",
-          bg: "white",
-        }}
-        onClick={() => setIsOpen(true)}>
-        Créer un utilisateur
-      </Button>
+    <Stack>
+      <Stack>
+        <Heading fontSize="3xl" textAlign="center" className="title_user">
+          Liste des utilisateurs
+        </Heading>
+      </Stack>
+      <Stack align="flex-end">
+        <Button
+          m={5}
+          display={"flex"}
+          justifyContent="center"
+          align="center"
+          leftIcon={<AddIcon />}
+          bg={"black"}
+          color={"white"}
+          _hover={{
+            color: "black",
+            bg: "white",
+          }}
+          onClick={() => setIsOpen(true)}>
+          Créer un utilisateur
+        </Button>
+      </Stack>
 
       <Modal isOpen={isOpen} onClose={handleClose} size="xl">
         <ModalOverlay

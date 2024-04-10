@@ -21,7 +21,7 @@ const Footer = () => {
   };
   return (
     <Box
-      p={{ base: 5, md: 8 }}
+      p={{ base: 3, md: 0 }}
       marginInline="auto"
       bg={"black"}
       color={"white"}>

@@ -3,6 +3,7 @@
   padding: 0;
   margin: 0;
   outline: none;
+  font-family: "futura";
 }
 
 :root {
@@ -66,7 +67,7 @@ Link {
   backdrop-filter: blur(15px);
 }
 
-/* Page Caftan (title + Produire) */
+/* Page Caftan (title + Produie) */
 
 .Caftans {
   padding: 40px 0 60px 0;
@@ -100,10 +101,17 @@ Link {
   border: #dfcbb7;
 }
 
+/*Page contact*/
+
 /* Page admin (liste utilisateur + form) */
 
 .box_user {
   padding: 40px 0 60px 0;
+}
+
+.chakra-button__icon,
+.css-1wh2kri {
+  margin: 0;
 }
 
 .form_modal {

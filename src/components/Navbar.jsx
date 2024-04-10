@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { FaBagShopping } from "react-icons/fa6";
 import { Link, Box, Flex, Text, Button, Stack } from "@chakra-ui/react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
+// import Panier from "./users/Panier";
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -99,13 +101,18 @@ const MenuLinks = ({ isOpen }) => {
         <MenuItem to="/">Accueil</MenuItem>
         <MenuItem to="/caftan"> Caftan </MenuItem>
         <MenuItem to="/apropos">À Propos</MenuItem>
-        <MenuItem to="/contact">Nous contacter </MenuItem>
 
+        {isAdmin === false ? (
+          <MenuItem to="/contact">Nous contacter </MenuItem>
+        ) : null}
         {isAdmin === true ? <MenuItem to="/users">Users </MenuItem> : null}
 
         {userData ? (
           <>
             <MenuItem>{userDataName} </MenuItem>
+            <Button as={RouterLink} to={"/panier"} bg={"none"}>
+              <FaBagShopping />
+            </Button>
 
             <Button
               onClick={handleLogout}

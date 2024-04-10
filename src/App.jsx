@@ -8,7 +8,8 @@ import Connexion from "./pages/Auth/Connexion";
 import Footer from "./components/Footer";
 import AdminPage from "./pages/Admin/AdminPage";
 import Pagenotfound from "./pages/Pagenotfound";
-import PageArticle from "./pages/PageProd";
+import PageArticle from "./components/Articles/PageProd";
+import Panier from "./components/users/Panier";
 import "./App.css";
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/users" element={<AdminPage />} />
         <Route path="/caftan/:caftanId" element={<PageArticle />} />
-
+        <Route path="/panier" element={<Panier />} />
         <Route path="*" element={<Pagenotfound />} />
       </Routes>
       <Footer />
