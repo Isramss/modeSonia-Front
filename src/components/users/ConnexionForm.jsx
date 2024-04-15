@@ -102,15 +102,15 @@ function ConnexionForm() {
               </FormControl>
             </VStack>
             <VStack w="100%">
-              <Stack direction="row" justifyContent="space-between" w="100%">
-                <Checkbox colorScheme="green" size="md">
+              <Stack display={"flex"} justifyContent={"center"}>
+                {/* <Checkbox colorScheme="green" size="md">
                   Remember me
-                </Checkbox>
+                </Checkbox> */}
                 <Link
                   as={RouterLink}
                   to="/inscription"
                   fontSize={{ base: "md", sm: "md" }}>
-                  Inscription
+                  Inscrivez-vous
                 </Link>
               </Stack>
               <Button

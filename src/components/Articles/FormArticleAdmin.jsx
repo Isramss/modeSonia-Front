@@ -78,18 +78,20 @@ function FormArticleAdmin({ reloadArticle }) {
               backdropFilter="blur(3px) hue-rotate(90deg)"
             />
             <ModalContent
+              // color={"white"}
               maxW={{ base: "90%", md: "50%" }}
               maxH="90vh"
               p={"10px"}
               className="form_modal"
               bg={"#0000003c"}>
-              <ModalHeader>Créer un article</ModalHeader>
+              <ModalHeader color={"white"}>Créer un article</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
                 <VStack spacing={4}>
                   <FormControl onSubmit={CreateArticle}>
-                    <FormLabel>Nom de l'article :</FormLabel>
+                    <FormLabel color={"white"}>Nom de l'article :</FormLabel>
                     <input
+                      color="black"
                       type="text"
                       value={newArticle.title_Produit}
                       onChange={(e) =>
@@ -101,7 +103,7 @@ function FormArticleAdmin({ reloadArticle }) {
                     />
                   </FormControl>
                   <FormControl>
-                    <FormLabel>Photo du produit :</FormLabel>
+                    <FormLabel color={"white"}>Photo du produit :</FormLabel>
                     <input
                       type="url"
                       value={newArticle.imageURL}
@@ -114,7 +116,7 @@ function FormArticleAdmin({ reloadArticle }) {
                     />
                   </FormControl>
                   <FormControl>
-                    <FormLabel>Prix du produit :</FormLabel>
+                    <FormLabel color={"white"}>Prix du produit :</FormLabel>
                     <input
                       type="number"
                       value={newArticle.price}
@@ -124,7 +126,7 @@ function FormArticleAdmin({ reloadArticle }) {
                     />
                   </FormControl>
                   <FormControl>
-                    <FormLabel>Description :</FormLabel>
+                    <FormLabel color={"white"}>Description :</FormLabel>
                     <input
                       type="text"
                       value={newArticle.description}

@@ -1,3 +1,4 @@
+import { Heading } from "@chakra-ui/react";
 import React from "react";
 import AccueilBody from "../components/AccueilBody";
 
@@ -7,7 +8,6 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <AccueilBody />
     </>
   );
 }

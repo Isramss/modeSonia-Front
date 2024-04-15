@@ -108,9 +108,9 @@ function UserList({ users, deleteUsers, updateUsers }) {
       <Table variant="striped">
         <Thead>
           <Tr>
-            <Th>Name</Th>
+            <Th>Identité</Th>
             <Th>Email</Th>
-            <Th display={{ base: "none", md: "table-cell" }}>Address</Th>
+            <Th display={{ base: "none", md: "table-cell" }}>Adresse</Th>
             <Th display={{ base: "none", md: "table-cell" }}>Code Postal</Th>
             <Th>Action</Th>
           </Tr>

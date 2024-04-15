@@ -168,14 +168,17 @@ function InscriptionForm() {
                 />
               </FormControl>
             </VStack>
+
             <VStack w="100%">
-              <Stack direction="row" justifyContent="space-between" w="100%">
-                <Checkbox colorScheme="green" size="md">
+              <Stack>
+                {/* <Checkbox colorScheme="green" size="md">
                   Remember me
-                </Checkbox>
+                </Checkbox> */}
                 <Link
                   as={RouterLink}
                   to="/connexion"
+                  display={"flex"}
+                  justifyContent={"center"}
                   fontSize={{ base: "md", sm: "md" }}>
                   Connexion
                 </Link>

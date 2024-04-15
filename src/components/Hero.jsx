@@ -13,7 +13,7 @@ function Hero() {
   return (
     <Flex
       w={"full"}
-      h={"100vh"}
+      h={"500px"}
       backgroundImage={
         "url(https://www.arbayadress.com/cdn/shop/files/Facetune_09-07-2023-17-45-25.heic?v=1688923601&width=2200)"
       }

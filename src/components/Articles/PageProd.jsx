@@ -236,31 +236,21 @@ function PageArticle() {
             textAlign="left">
             {caftan.price} €
           </Heading>
-
+          <Text fontSize="md">Description</Text>
+          <Text fontSize="md" maxW={"500px"}>
+            {caftan.description}
+          </Text>
           <Flex
             // width={"100%"}
             justify={"center"}
             bg={useColorModeValue("gray.50", "gray.800")}>
-            <Container maxW="xl">
+            <Container maxW="m">
               <Accordion
                 // m={{ base: 5, md: 3 }}
                 allowMultiple
                 width="100%"
                 maxW="xl"
                 rounded="lg">
-                <AccordionItem>
-                  <AccordionButton
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="space-between"
-                    p={4}>
-                    <Text fontSize="md">Description</Text>
-                    <ChevronDownIcon fontSize="24px" />
-                  </AccordionButton>
-                  <AccordionPanel pb={4}>
-                    <Text color="gray.600">{caftan.description}</Text>
-                  </AccordionPanel>
-                </AccordionItem>
                 <AccordionItem>
                   <AccordionButton
                     display="flex"

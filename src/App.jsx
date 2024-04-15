@@ -10,6 +10,7 @@ import AdminPage from "./pages/Admin/AdminPage";
 import Pagenotfound from "./pages/Pagenotfound";
 import PageArticle from "./components/Articles/PageProd";
 import Panier from "./components/users/Panier";
+import Apropos from "./pages/Apropos";
 import "./App.css";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/users" element={<AdminPage />} />
         <Route path="/caftan/:caftanId" element={<PageArticle />} />
         <Route path="/panier" element={<Panier />} />
+        <Route path="/apropos" element={<Apropos />} />
         <Route path="*" element={<Pagenotfound />} />
       </Routes>
       <Footer />

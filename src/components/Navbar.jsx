@@ -109,10 +109,13 @@ const MenuLinks = ({ isOpen }) => {
 
         {userData ? (
           <>
+            {isAdmin === false ? (
+              <Button as={RouterLink} to={"/panier"} bg={"none"}>
+                <FaBagShopping />
+              </Button>
+            ) : null}
+
             <MenuItem>{userDataName} </MenuItem>
-            <Button as={RouterLink} to={"/panier"} bg={"none"}>
-              <FaBagShopping />
-            </Button>
 
             <Button
               onClick={handleLogout}

@@ -101,6 +101,11 @@ Link {
   border: #dfcbb7;
 }
 
+/* Page à Propos */
+.Apropos {
+  padding: 40px 0 60px 0;
+}
+
 /*Page contact*/
 
 /* Page admin (liste utilisateur + form) */
