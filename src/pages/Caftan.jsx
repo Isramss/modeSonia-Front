@@ -85,9 +85,7 @@ function Caftan() {
   };
 
   return (
-    <div
-    // className="Caftans"
-    >
+    <div>
       <HeroCaftans />
       <FormArticleAdmin reloadArticle={reloadArticle} />
       <AllCaftan

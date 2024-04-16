@@ -108,6 +108,12 @@ Link {
 
 /*Page contact*/
 
+/*Page Profile*/
+
+.title_profile {
+  padding: 40px 0 60px 0;
+}
+
 /* Page admin (liste utilisateur + form) */
 
 .box_user {

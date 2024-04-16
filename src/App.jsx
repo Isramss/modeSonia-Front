@@ -11,6 +11,7 @@ import Pagenotfound from "./pages/Pagenotfound";
 import PageArticle from "./components/Articles/PageProd";
 import Panier from "./components/users/Panier";
 import Apropos from "./pages/Apropos";
+import Profil from "./pages/Profil";
 import "./App.css";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/caftan/:caftanId" element={<PageArticle />} />
         <Route path="/panier" element={<Panier />} />
         <Route path="/apropos" element={<Apropos />} />
+        <Route path="/profil/:userId" element={<Profil />} />
         <Route path="*" element={<Pagenotfound />} />
       </Routes>
       <Footer />

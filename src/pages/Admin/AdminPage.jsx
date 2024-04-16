@@ -6,7 +6,6 @@ import UserList from "../../components/Admin/UserList";
 import axios from "axios";
 import "../../App.css";
 import { useToast } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
 
 function AdminPage() {
   const [users, setUsers] = useState([]);

@@ -66,22 +66,7 @@
 // export default UserList;
 
 import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-} from "@chakra-ui/react";
+import { Box, Button, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 
 import UserProfileEdit from "./UserProfileEdit";
 

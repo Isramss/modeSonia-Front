@@ -115,7 +115,9 @@ const MenuLinks = ({ isOpen }) => {
               </Button>
             ) : null}
 
-            <MenuItem>{userDataName} </MenuItem>
+            <MenuItem to={`/profil/${userData.user._id}`}>
+              {userDataName}{" "}
+            </MenuItem>
 
             <Button
               onClick={handleLogout}
