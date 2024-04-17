@@ -1,12 +1,4 @@
-import {
-  Box,
-  Center,
-  Heading,
-  Text,
-  Stack,
-  Image,
-  Button,
-} from "@chakra-ui/react";
+import { Box, Center, Heading, Text, Stack, Image } from "@chakra-ui/react";
 import React from "react";
 
 function CardArticle({ imageURL, title_Produit, price }) {
@@ -14,10 +6,7 @@ function CardArticle({ imageURL, title_Produit, price }) {
     <Center p={0} m={0} mt={-5} _hover={{ opacity: 0.6 }}>
       <Box pt={"10px"}>
         <Box
-          // maxH={"330px"}
           rounded={"lg"}
-          // p={6}
-
           pos={"relative"}
           height={"180px"}
           _after={{
@@ -28,7 +17,7 @@ function CardArticle({ imageURL, title_Produit, price }) {
             pos: "absolute",
             top: 5,
             left: 0,
-            // backgroundImage: `url(${imageURL})`,
+
             filter: "blur(15px)",
             zIndex: -1,
           }}

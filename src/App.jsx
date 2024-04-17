@@ -25,8 +25,8 @@ function App() {
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/users" element={<AdminPage />} />
-        <Route path="/caftan/:caftanId" element={<PageArticle />} />
-        <Route path="/panier" element={<Panier />} />
+        <Route path="/caftan/:caftanId/add" element={<PageArticle />} />
+        <Route path="/panier/:userId" element={<Panier />} />
         <Route path="/apropos" element={<Apropos />} />
         <Route path="/profil/:userId" element={<Profil />} />
         <Route path="*" element={<Pagenotfound />} />

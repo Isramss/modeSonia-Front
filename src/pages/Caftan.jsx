@@ -1,12 +1,14 @@
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import AllCaftan from "../components/Articles/AllCaftan";
 import FormArticleAdmin from "../components/Articles/FormArticleAdmin";
 import HeroCaftans from "../components/HeroCaftans";
 
 function Caftan() {
   const [caftans, setCaftans] = useState([]);
+  const { userId } = useParams();
   const toast = useToast();
 
   useEffect(() => {
@@ -14,7 +16,6 @@ function Caftan() {
       try {
         const response = await axios.get("http://localhost:4567/articles/");
         setCaftans(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -89,6 +90,7 @@ function Caftan() {
       <HeroCaftans />
       <FormArticleAdmin reloadArticle={reloadArticle} />
       <AllCaftan
+        userId={userId}
         caftans={caftans}
         deleteArticle={deleteArticle}
         updateArticle={updateArticle}

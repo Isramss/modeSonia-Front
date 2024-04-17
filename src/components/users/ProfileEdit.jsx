@@ -156,7 +156,7 @@ import {
   Stack,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function ProfileEdit({ users, updateUsers }) {
   const userData = JSON.parse(sessionStorage.getItem("user"));

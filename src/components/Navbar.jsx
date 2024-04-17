@@ -110,7 +110,10 @@ const MenuLinks = ({ isOpen }) => {
         {userData ? (
           <>
             {isAdmin === false ? (
-              <Button as={RouterLink} to={"/panier"} bg={"none"}>
+              <Button
+                as={RouterLink}
+                to={`/panier/${userData.user._id}`}
+                bg={"none"}>
                 <FaBagShopping />
               </Button>
             ) : null}
