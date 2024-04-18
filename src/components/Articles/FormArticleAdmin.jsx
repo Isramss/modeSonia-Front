@@ -20,7 +20,7 @@ import React, { useState } from "react";
 
 function FormArticleAdmin({ reloadArticle }) {
   const userData = JSON.parse(sessionStorage.getItem("user"));
-  const isAdmin = userData ? userData.user.isAdmin : false;
+  const isAdmin = userData ? userData.userData.isAdmin : false;
   const [isOpen, setIsOpen] = useState(false);
   const [newArticle, setNewArticle] = useState({
     title_Produit: "",
@@ -36,9 +36,21 @@ function FormArticleAdmin({ reloadArticle }) {
   const CreateArticle = async (e) => {
     e.preventDefault();
     try {
+      // token auth
+      const token = JSON.parse(sessionStorage.getItem("token"));
+
+      if (!token) {
+        throw new Error("Token not found");
+      }
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
       const response = await axios.post(
         "http://localhost:4567/articles/newarticle",
-        newArticle
+        newArticle,
+        config
       );
       setIsOpen(false);
       setNewArticle({

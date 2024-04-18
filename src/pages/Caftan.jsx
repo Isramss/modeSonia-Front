@@ -29,8 +29,22 @@ function Caftan() {
 
   const deleteArticle = async (caftanId) => {
     try {
+      // token auth
+      const token = JSON.parse(sessionStorage.getItem("token"));
+
+      if (!token) {
+        throw new Error("Token not found");
+      }
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
       const articleToDelete = caftans.find((caftan) => caftan._id === caftanId);
-      await axios.delete(`http://localhost:4567/articles/delete/${caftanId}`);
+      await axios.delete(
+        `http://localhost:4567/articles/delete/${caftanId}`,
+        config
+      );
       setCaftans(caftans.filter((caftan) => caftan._id !== caftanId));
       toast({
         title: `Suppresion de ${articleToDelete.title_Produit} réussie ! 👍`,
@@ -45,10 +59,22 @@ function Caftan() {
 
   const updateArticle = async (articleToUpdate) => {
     try {
+      // token auth
+      const token = JSON.parse(sessionStorage.getItem("token"));
+
+      if (!token) {
+        throw new Error("Token not found");
+      }
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
       const response = await axios.put(
         `http://localhost:4567/articles/update/${articleToUpdate._id}`,
 
-        articleToUpdate
+        articleToUpdate,
+        config
       );
 
       if (response.status === 200) {

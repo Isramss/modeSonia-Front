@@ -14,13 +14,17 @@ import CardArticle from "../Articles/Card";
 
 function Panier() {
   const [cart, setCart] = useState([]);
-  const { userId } = useParams();
-  const navigate = useNavigate();
 
+  const userData = JSON.parse(sessionStorage.getItem("user"));
+  const userId = userData.userData.id;
+
+  const navigate = useNavigate();
   useEffect(() => {
     const displayCart = async () => {
       try {
-        const res = await axios.get(`http://localhost:4567/cart/${userId}`);
+        const res = await axios.get(
+          `http://localhost:4567/cart/${userData.userData.id}`
+        );
         setCart(res.data.cartItems);
       } catch (error) {
         console.error(error);

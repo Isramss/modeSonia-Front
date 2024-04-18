@@ -72,14 +72,12 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
 
 const MenuLinks = ({ isOpen }) => {
   const navigate = useNavigate();
-  // useNaviagate() => permet de rediriger au clique vers une autres URL (pages) sans avoir a passer par Link
-  const userData = JSON.parse(sessionStorage.getItem("user"));
+
   // la ligne userData => permet de stocker les données dans la valeur userData, grâce à la clé "user".
-  // const userDataName = userData ? userData.user.name.first : "";
+  const userData = JSON.parse(sessionStorage.getItem("user"));
+
   // userDataEmail => Si il y a les données de userData alors tu m'affiche le nom (tout en rentrant dans le model user puis name puis first) sinon tu ne m'affiche rien.
   const isAdmin = userData ? userData.userData.isAdmin : false;
-
-  console.log(isAdmin);
 
   const handleLogout = async () => {
     sessionStorage.removeItem("user");
@@ -102,23 +100,21 @@ const MenuLinks = ({ isOpen }) => {
         <MenuItem to="/caftan"> Caftan </MenuItem>
         <MenuItem to="/apropos">À Propos</MenuItem>
 
-        {isAdmin === false ? (
-          <MenuItem to="/contact">Nous contacter </MenuItem>
-        ) : null}
+        {!isAdmin ? <MenuItem to="/contact">Nous contacter </MenuItem> : null}
         {isAdmin === true ? <MenuItem to="/users">Users </MenuItem> : null}
 
         {userData ? (
           <>
-            {isAdmin === false ? (
+            {!isAdmin ? (
               <Button
                 as={RouterLink}
-                to={`/panier/${userData.user._id}`}
+                to={`/panier/${userData.userData._id}`}
                 bg={"none"}>
                 <FaBagShopping />
               </Button>
             ) : null}
 
-            <MenuItem to={`/profil/${userData._id}`}>
+            <MenuItem to={`/profil/${userData.userData.id}`}>
               {userData.userData.name.first}{" "}
             </MenuItem>
 

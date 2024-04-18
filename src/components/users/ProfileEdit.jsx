@@ -1,147 +1,3 @@
-// import { EditIcon } from "@chakra-ui/icons";
-// import {
-//   Box,
-//   Button,
-//   Center,
-//   Container,
-//   Divider,
-//   FormControl,
-//   FormLabel,
-//   Heading,
-//   Input,
-//   Stack,
-//   VStack,
-// } from "@chakra-ui/react";
-// import React, { useState } from "react";
-// // import { useState } from "react";
-
-// function ProfileEdit({ users, updateUsers }) {
-//   // const [newProfile, setNewProfile] = useState([]);
-//   const userData = JSON.parse(sessionStorage.getItem("user"));
-
-//   const userDataName = userData ? userData.user.name.first : "";
-//   const userDataLast = userData ? userData.user.name.last : "";
-
-//   const [editableIndex, setEditableIndex] = useState(-1);
-//   const [editProfile, setEditProfile] = useState({
-//     name: { first: "", last: "" },
-//     email: "",
-//     address: "",
-//     zipcode: "",
-//   });
-
-//   const handleEditClick = (index) => {
-//     setEditableIndex(index);
-//     setEditProfile(caftans[index]);
-//   };
-
-//   const handleSaveClick = () => {
-//     updateArticle(editProfile);
-//     setEditableIndex(-1);
-//     setEditProfile({
-//       name: { first: "", last: "" },
-//       email: "",
-//       address: "",
-//       zipcode: "",
-//     });
-//   };
-
-//   const handleCancelClick = () => {
-//     setEditableIndex(-1);
-//     setEditProfile({
-//       name: { first: "", last: "" },
-//       email: "",
-//       address: "",
-//       zipcode: "",
-//     });
-//   };
-
-//   return (
-//     <>
-//       <Heading
-//         className="title_profile"
-//         display={"flex"}
-//         justifyContent={"center"}>
-//         Vos informations personnels
-//       </Heading>
-//       <Heading p={"20px"}>
-//         {userDataLast} {userDataName}
-//       </Heading>
-//       <Container
-//         pb={20}
-//         key={`${users._id}`}
-//         role={"group"}
-//         p={6}
-//         maxW={"330px"}
-//         w={"full"}
-//         bg={useColorModeValue("white", "gray.800")}
-//         boxShadow={"2xl"}
-//         rounded={"lg"}
-//         pos={"relative"}
-//         zIndex={1}>
-//          { editableIndex === index ? (
-//         <Center>
-//           <Stack fontSize={"xl"} spacing={6}>
-//             <VStack
-//               as="form"
-//               className="formConnexion"
-//               display={"flex"}
-//               gap={10}
-//               spacing={8}
-//               w={{ base: "sm", sm: "lg" }}
-//               p={{ base: 5, sm: 6 }}>
-//               <VStack spacing={5} w="100%">
-//                 <FormControl id="email" isRequired>
-//                   <Heading paddingBottom={5}>E-mail :</Heading>
-//                   <FormLabel fontSize={20}> {users.email}</FormLabel>
-//                 </FormControl>
-//                 <Divider />
-//                 <FormControl
-//                   id="text"
-//                   position="relative"
-//                   bottom="1px"
-//                   isRequired>
-//                   <Heading paddingBottom={5}>Adresse :</Heading>
-
-//                   <FormLabel fontSize={20}> {users.address}</FormLabel>
-//                 </FormControl>
-//                 <Divider />
-//                 <FormControl
-//                   id="number"
-//                   position="relative"
-//                   bottom="1px"
-//                   isRequired>
-//                   <Heading paddingBottom={5}>Code Postal :</Heading>
-
-//                   <FormLabel fontSize={20}> {users.zipcode}</FormLabel>
-//                 </FormControl>
-//                 <Divider />
-//               </VStack>
-//               ) : (
-//               <Stack display={"row"} pb="10px" cursor="pointer">
-//                 <Button
-//                   mt={-5}
-//                   onClick={() => handleEditClick(index)}
-//                   bg={"black"}
-//                   height={"25px"}
-//                   color={"white"}
-//                   _hover={{
-//                     color: "black",
-//                     bg: "none",
-//                   }}>
-//                   <EditIcon />
-//                 </Button>
-//               </Stack>
-//             </VStack>
-//           </Stack>
-//         </Center>
-//               )}
-//       </Container>
-//     </>
-//   );
-// }
-// export default ProfileEdit;
-
 import { EditIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -155,41 +11,92 @@ import {
   Input,
   Stack,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
-function ProfileEdit({ users, updateUsers }) {
-  const userData = JSON.parse(sessionStorage.getItem("user"));
+function ProfileEdit() {
+  const [users, setUsers] = useState(null);
+  const { userId } = useParams();
+  const toast = useToast();
   const [isEditing, setIsEditing] = useState(false);
   const [editProfile, setEditProfile] = useState({
-    id: userData ? userData.user._id : "",
-    email: userData ? userData.user.email : "",
-    address: userData ? userData.user.address : "",
-    zipcode: userData ? userData.user.zipcode : "",
+    id: "",
+    email: "",
+    address: "",
+    zipcode: "",
   });
+
+  useEffect(() => {
+    const getProfile = async () => {
+      try {
+        // token auth
+        const token = JSON.parse(sessionStorage.getItem("token"));
+
+        if (!token) {
+          throw new Error("Token not found");
+        }
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const res = await axios.get(
+          `http://localhost:4567/auth/${userId}`,
+          config
+        );
+        setUsers(res.data);
+        setEditProfile(res.data); // Mettre à jour editProfile avec les informations actuelles de l'utilisateur
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getProfile();
+  }, [userId]);
+
+  const updateUsers = async () => {
+    try {
+      const res = await axios.put(
+        `http://localhost:4567/auth/edit/${userId}`,
+        editProfile
+      );
+
+      if (res.status === 200) {
+        console.log("Utilisateur mis à jour avec succès");
+        setIsEditing(false);
+        toast({
+          title: "Profil mis à jour avec succès",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+      } else {
+        console.log("Erreur lors de la mise à jour de l'utilisateur");
+      }
+    } catch (error) {
+      console.error("L'utilisateur n'a pas été modifié:", error);
+    }
+  };
 
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
-  const handleSaveClick = () => {
-    console.log("Save button clicked");
-    updateUsers(editProfile.id, {
-      email: editProfile.email,
-      address: editProfile.address,
-      zipcode: editProfile.zipcode,
-    });
-    setIsEditing(false);
+  const handleSaveClick = async () => {
+    try {
+      await updateUsers();
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour de l'utilisateur:", error);
+    }
   };
 
   const handleCancelClick = () => {
-    // setIsEditing(false);
-    setEditProfile({
-      id: userData ? userData.user.id : "",
-      email: userData ? userData.user.email : "",
-      address: userData ? userData.user.address : "",
-      zipcode: userData ? userData.user.zipcode : "",
-    });
+    // Réinitialisez les données de l'édition à partir des données actuelles de l'utilisateur
+    setEditProfile(users);
+    setIsEditing(false);
   };
 
   return (
@@ -216,6 +123,18 @@ function ProfileEdit({ users, updateUsers }) {
                 zIndex={1}>
                 {isEditing ? (
                   <Box>
+                    {/* <FormControl mt={5}>
+                      <Input
+                        type="name"
+                        value={editProfile.name}
+                        onChange={(e) =>
+                          setEditProfile({
+                            ...editProfile,
+                            name: e.target.value,
+                          })
+                        }
+                      />
+                    </FormControl> */}
                     <FormControl mt={5}>
                       <Input
                         type="email"
@@ -262,9 +181,9 @@ function ProfileEdit({ users, updateUsers }) {
                           color: "black",
                           bg: "white",
                         }}>
-                        Save
+                        Enregistrer
                       </Button>
-                      <Button onClick={handleCancelClick}>Cancel</Button>
+                      <Button onClick={handleCancelClick}>Annuler</Button>
                     </Box>
                   </Box>
                 ) : (

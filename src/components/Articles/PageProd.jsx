@@ -26,9 +26,7 @@ function PageArticle() {
   const { caftanId } = useParams();
   const toast = useToast();
   const currentUser = JSON.parse(sessionStorage.getItem("user"));
-  console.log(currentUser);
-  const userId = currentUser ? currentUser.user._id : null;
-  console.log(userId);
+  const userId = currentUser ? currentUser.userData.id : null;
 
   useEffect(() => {
     const getArticle = async () => {
@@ -37,7 +35,7 @@ function PageArticle() {
           `http://localhost:4567/articles/${caftanId}`
         );
         setCaftan(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       } catch (error) {
         console.error(error);
       }

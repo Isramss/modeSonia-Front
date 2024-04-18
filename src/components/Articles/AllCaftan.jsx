@@ -15,7 +15,7 @@ import CardArticle from "./Card";
 function AllCaftan({ caftans, deleteArticle, updateArticle }) {
   const userData = JSON.parse(sessionStorage.getItem("user"));
 
-  const isAdmin = userData ? userData.user.isAdmin : false;
+  const isAdmin = userData ? userData.userData.isAdmin : false;
   // je l'initialise à -1 (Pour dire qu'on part de rien )
   const [editableIndex, setEditableIndex] = useState(-1);
   const [editArticle, setEditArticle] = useState({

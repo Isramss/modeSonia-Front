@@ -13,21 +13,22 @@ function AdminPage() {
   const isAdmin = userData ? userData.userData.isAdmin : false;
   const toast = useToast();
 
+  // token auth
+  const token = JSON.parse(sessionStorage.getItem("token"));
+  console.log("token");
+
+  if (!token) {
+    throw new Error("Token not found");
+  }
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
   useEffect(() => {
     const listUser = async () => {
       try {
-        const token = JSON.parse(sessionStorage.getItem("token"));
-        console.log("token");
-
-        if (!token) {
-          throw new Error("Token not found");
-        }
-        const config = {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        };
-
         const res = await axios.get("http://localhost:4567/auth/", config);
         console.log(res.data);
         setUsers(res.data);
@@ -43,7 +44,7 @@ function AdminPage() {
       const userToDelete = users.find((user) => user._id === userId);
       // pour afficher le fullname en visant l'user
 
-      await axios.delete(`http://localhost:4567/auth/delete/${userId}`);
+      await axios.delete(`http://localhost:4567/auth/delete/${userId}`, config);
       setUsers(users.filter((user) => user._id !== userId));
       //la ligne de setUsers => permet de mettre a jour les utilisateurs supprimer avec leurs id
 
@@ -67,7 +68,8 @@ function AdminPage() {
     try {
       const res = await axios.put(
         `http://localhost:4567/auth/edit/${userToUpdate._id}`,
-        userToUpdate
+        userToUpdate,
+        config
       );
       if (res.status === 200) {
         // Ici la liste se met à jour
