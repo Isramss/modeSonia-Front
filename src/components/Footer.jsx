@@ -14,6 +14,7 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 const Footer = () => {
   const navigate = useNavigate();
   const userData = localStorage.getItem("user");
+  const isAdmin = userData ? userData.user.isAdmin : false;
 
   const handleLogout = async () => {
     localStorage.removeItem("user");

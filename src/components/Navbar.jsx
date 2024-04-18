@@ -75,11 +75,11 @@ const MenuLinks = ({ isOpen }) => {
   // useNaviagate() => permet de rediriger au clique vers une autres URL (pages) sans avoir a passer par Link
   const userData = JSON.parse(sessionStorage.getItem("user"));
   // la ligne userData => permet de stocker les données dans la valeur userData, grâce à la clé "user".
-  const userDataName = userData ? userData.user.name.first : "";
+  // const userDataName = userData ? userData.user.name.first : "";
   // userDataEmail => Si il y a les données de userData alors tu m'affiche le nom (tout en rentrant dans le model user puis name puis first) sinon tu ne m'affiche rien.
-  const isAdmin = userData ? userData.user.isAdmin : false;
+  const isAdmin = userData ? userData.userData.isAdmin : false;
 
-  console.log("isAdmin:", isAdmin);
+  console.log(isAdmin);
 
   const handleLogout = async () => {
     sessionStorage.removeItem("user");
@@ -118,8 +118,8 @@ const MenuLinks = ({ isOpen }) => {
               </Button>
             ) : null}
 
-            <MenuItem to={`/profil/${userData.user._id}`}>
-              {userDataName}{" "}
+            <MenuItem to={`/profil/${userData._id}`}>
+              {userData.userData.name.first}{" "}
             </MenuItem>
 
             <Button

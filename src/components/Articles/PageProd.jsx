@@ -51,7 +51,8 @@ function PageArticle() {
         `http://localhost:4567/cart/${caftanId}/add/${userId}`
       );
       console.log(res.data);
-      console.log(userId);
+      console.log(userId, caftanId);
+
       toast({
         title: "Article ajouté au panier",
         status: "success",

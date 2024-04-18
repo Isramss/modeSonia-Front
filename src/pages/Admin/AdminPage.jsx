@@ -9,14 +9,26 @@ import { useToast } from "@chakra-ui/react";
 
 function AdminPage() {
   const [users, setUsers] = useState([]);
-  const userDataAd = JSON.parse(sessionStorage.getItem("user"));
-  const isAdmin = userDataAd ? userDataAd.user.isAdmin : false;
+  const userData = JSON.parse(sessionStorage.getItem("user"));
+  const isAdmin = userData ? userData.userData.isAdmin : false;
   const toast = useToast();
 
   useEffect(() => {
     const listUser = async () => {
       try {
-        const res = await axios.get("http://localhost:4567/auth/");
+        const token = JSON.parse(sessionStorage.getItem("token"));
+        console.log("token");
+
+        if (!token) {
+          throw new Error("Token not found");
+        }
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
+        const res = await axios.get("http://localhost:4567/auth/", config);
         console.log(res.data);
         setUsers(res.data);
       } catch (error) {
