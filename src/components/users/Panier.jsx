@@ -67,7 +67,7 @@ function Panier() {
   return (
     <>
       <Container maxW="100%" p={{ base: 5, md: 10 }}>
-        <Center>
+        <Center className={"box_panier"}>
           {cart.length > 0 ? (
             <Box>
               <Heading

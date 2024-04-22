@@ -13,8 +13,7 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const navigate = useNavigate();
-  const userData = localStorage.getItem("user");
-  // const isAdmin = userData ? userData.userData.isAdmin : false;
+  const userData = JSON.parse(sessionStorage.getItem("user"));
 
   const handleLogout = async () => {
     localStorage.removeItem("user");
@@ -88,7 +87,7 @@ const Footer = () => {
           justifyContent="space-between">
           <Link>
             <Text mt={2} color="#b5b3b3" fontSize="md">
-              Mentions lesgales | cdc
+              Mentions legales | cdc
             </Text>
           </Link>
         </Stack>
