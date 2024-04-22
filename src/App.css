@@ -29,6 +29,45 @@ Link {
   padding: 0 20px;
 } */
 
+/*  Accueil  */
+
+.Title_bestseller {
+  margin: 40px;
+  display: flex;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.AccueilDisplay {
+  display: Grid;
+  margin-bottom: 40px;
+  justify-content: center;
+  grid-template-columns: repeat(3, 330px);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  gap: 25px;
+}
+
+@media screen and (max-width: 900px) {
+  .AccueilDisplay {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    justify-items: center;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .AccueilDisplay {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    justify-items: center;
+  }
+}
+
 /*  Formulaire d'inscription : Inscription => Inscriptionform  */
 
 .inscription {
@@ -75,7 +114,7 @@ Link {
 
 .displayCard {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 }
@@ -103,10 +142,16 @@ Link {
 
 /* Page à Propos */
 .Apropos {
-  padding: 40px 0 60px 0;
+  padding: 40px 0 40px 0;
 }
 
 /*Page contact*/
+
+/*  Page panier  */
+
+.css-gmuwbf {
+  display: block !important;
+}
 
 /*Page Profile*/
 

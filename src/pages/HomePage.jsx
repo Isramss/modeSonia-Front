@@ -1,6 +1,6 @@
-import { Heading } from "@chakra-ui/react";
 import React from "react";
-import AccueilBody from "../components/AccueilBody";
+
+import CarousselCardAccueil from "../components/CarousselCardAccueil";
 
 import Hero from "../components/Hero";
 
@@ -8,6 +8,7 @@ function HomePage() {
   return (
     <>
       <Hero />
+      <CarousselCardAccueil />
     </>
   );
 }

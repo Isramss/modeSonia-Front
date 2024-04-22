@@ -27,6 +27,7 @@ import {
 } from "react-icons/md";
 import { BsGithub, BsDiscord, BsPerson } from "react-icons/bs";
 function Contact() {
+  const email = "modeSonia@contact.com";
   return (
     <Container
       backgroundImage={
@@ -72,6 +73,7 @@ function Contact() {
                         variant="ghost"
                         color="#DCE2FF"
                         _hover={{ border: "2px solid #dfcbb7" }}
+                        href={`mailto:${email}`}
                         leftIcon={<MdEmail color="#dfcbb7" size="20px" />}>
                         modeSonia@contact.com
                       </Button>

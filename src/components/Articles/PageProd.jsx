@@ -14,6 +14,13 @@ import {
   Skeleton,
   Button,
   useToast,
+  AlertDialog,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogBody,
+  AlertDialogFooter,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import axios from "axios";
@@ -21,10 +28,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+
 function PageArticle() {
   const [caftan, setCaftan] = useState("");
   const { caftanId } = useParams();
   const toast = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef();
   const currentUser = JSON.parse(sessionStorage.getItem("user"));
   const userId = currentUser ? currentUser.userData.id : null;
 
@@ -78,6 +89,9 @@ function PageArticle() {
 
   return (
     <Container maxW="10xl" px={{ base: 5, md: 3 }} py={7}>
+      <Button bg="none" as={Link} to="/caftan">
+        Retour
+      </Button>
       <Stack
         direction={{ base: "column", md: "row" }}
         justifyContent="center"
@@ -168,7 +182,7 @@ function PageArticle() {
           </Flex>
           <Button
             mt={5}
-            onClick={handleClick}
+            onClick={onOpen}
             bg={"black"}
             width="200px"
             height={"50px"}
@@ -179,6 +193,38 @@ function PageArticle() {
             }}>
             Ajouter au panier
           </Button>
+          <AlertDialog
+            isOpen={isOpen}
+            leastDestructiveRef={cancelRef}
+            onClose={onClose}>
+            <AlertDialogOverlay>
+              <AlertDialogContent>
+                <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                  Ajouter un produit
+                </AlertDialogHeader>
+
+                <AlertDialogBody>
+                  Voulez-vous ajouter ce produit à votre panier ?
+                </AlertDialogBody>
+
+                <AlertDialogFooter>
+                  <Button ref={cancelRef} onClick={onClose}>
+                    Annuler
+                  </Button>
+                  <Button
+                    bg="black"
+                    color="white"
+                    onClick={() => {
+                      handleClick();
+                      onClose();
+                    }}
+                    ml={3}>
+                    Ajouter
+                  </Button>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialogOverlay>
+          </AlertDialog>
         </Stack>
       </Stack>
     </Container>

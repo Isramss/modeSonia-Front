@@ -9,7 +9,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CardArticle from "./Card";
 
 function AllCaftan({ caftans, deleteArticle, updateArticle }) {

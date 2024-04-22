@@ -6,11 +6,17 @@ import {
   Container,
   Heading,
   Stack,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import CardArticle from "../Articles/Card";
+import { useNavigate } from "react-router-dom";
+import CartItem from "../Articles/ListPanier";
 
 function Panier() {
   const [cart, setCart] = useState([]);
@@ -60,7 +66,7 @@ function Panier() {
 
   return (
     <>
-      <Container maxW="7xl" p={{ base: 5, md: 10 }}>
+      <Container maxW="100%" p={{ base: 5, md: 10 }}>
         <Center>
           {cart.length > 0 ? (
             <Box>
@@ -71,42 +77,70 @@ function Panier() {
                 p={10}>
                 Votre Panier
               </Heading>
-              <div>{totalCart()} €</div>
-              <Box className="displayCard" pb={5}>
-                {cart.map((caftan, index) => (
-                  <Box
-                    key={`${caftan._id}`}
-                    role={"group"}
-                    p={6}
-                    m={6}
-                    maxW={"330px"}
-                    w={"full"}
-                    boxShadow={"2xl"}
-                    rounded={"lg"}
-                    pos={"relative"}
-                    zIndex={1}>
-                    <Button
-                      mt={-10}
-                      onClick={() => deleteToCart(caftan._id)}
-                      bg={"none"}
-                      marginLeft={"5px"}
-                      height={"25px"}
-                      color={"red"}
-                      _hover={{
-                        color: "white",
-                        bg: "black",
-                      }}>
-                      <CloseIcon />
-                    </Button>
-                    <CardArticle
-                      key={index}
-                      imageURL={caftan.imageURL}
-                      title_Produit={caftan.title_Produit}
-                      price={caftan.price}
-                    />
-                  </Box>
-                ))}
-              </Box>
+
+              <Table variant="striped">
+                <Thead>
+                  <Tr>
+                    <Th>Article</Th>
+
+                    <Th display={"flex"} justifyContent={"center"}>
+                      Total
+                    </Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {cart.map((caftan, index) => (
+                    <Tr key={`${caftan._id}`} p={6} m={6} rounded={"lg"}>
+                      <CartItem
+                        key={index}
+                        imageURL={caftan.imageURL}
+                        title_Produit={caftan.title_Produit}
+                        price={caftan.price}
+                      />
+                      <th maxW={20}>
+                        {caftan.price} €
+                        <Button
+                          mt={-10}
+                          onClick={() => deleteToCart(caftan._id)}
+                          bg={"none"}
+                          marginLeft={"5px"}
+                          height={"25px"}
+                          color={"red"}
+                          _hover={{
+                            color: "white",
+                            bg: "black",
+                          }}>
+                          <CloseIcon />
+                        </Button>
+                      </th>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+              <div
+                style={{
+                  textAlign: "center",
+                  fontSize: "1.5rem",
+                  marginTop: "30px",
+                }}>
+                Sous-total : {totalCart()} €
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "30px",
+                }}>
+                <Button
+                  bg={"black"}
+                  color={"white"}
+                  _hover={{
+                    bg: "white",
+                    color: "black",
+                  }}>
+                  Procéder au paiement
+                </Button>
+              </div>
             </Box>
           ) : (
             <Box py={20}>
