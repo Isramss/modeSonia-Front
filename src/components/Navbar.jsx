@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaBagShopping } from "react-icons/fa6";
-import { Link, Box, Flex, Text, Button, Stack } from "@chakra-ui/react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { Box, Flex, Button, Stack } from "@chakra-ui/react";
+import { Link, Link as RouterLink, useNavigate } from "react-router-dom";
 // import Panier from "./users/Panier";
 
 const NavBar = (props) => {
@@ -59,16 +59,16 @@ const MenuToggle = ({ toggle, isOpen }) => {
   );
 };
 
-const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
-  // MenuItem estun composant qu'on rappel plus bas. Ce composant permet d'evter de re mettre link et text pour chaque lien du Menu.
-  return (
-    <Link href={to}>
-      <Text display="block" {...rest}>
-        {children}
-      </Text>
-    </Link>
-  );
-};
+// const Link = ({ children, isLast, to = "/", ...rest }) => {
+//   // MenuItem estun composant qu'on rappel plus bas. Ce composant permet d'evter de re mettre link et text pour chaque lien du Menu.
+//   return (
+//     <Link href={to}>
+//       <Text display="block" {...rest}>
+//         {children}
+//       </Text>
+//     </Link>
+//   );
+// };
 
 const MenuLinks = ({ isOpen }) => {
   const navigate = useNavigate();
@@ -96,12 +96,12 @@ const MenuLinks = ({ isOpen }) => {
         justify={["center", "space-between", "flex-end", "flex-end"]}
         direction={["column", "row", "row", "row"]}
         pt={[4, 4, 0, 0]}>
-        <MenuItem to="/">Accueil</MenuItem>
-        <MenuItem to="/caftan"> Caftan </MenuItem>
-        <MenuItem to="/apropos">À Propos</MenuItem>
+        <Link to="/">Accueil</Link>
+        <Link to="/caftan"> Caftan </Link>
+        <Link to="/apropos">À Propos</Link>
 
-        {!isAdmin ? <MenuItem to="/contact">Nous contacter </MenuItem> : null}
-        {isAdmin === true ? <MenuItem to="/users">Users </MenuItem> : null}
+        {!isAdmin ? <Link to="/contact">Nous contacter </Link> : null}
+        {isAdmin === true ? <Link to="/users">Users </Link> : null}
 
         {userData ? (
           <>
@@ -114,9 +114,9 @@ const MenuLinks = ({ isOpen }) => {
               </Button>
             ) : null}
 
-            <MenuItem to={`/profil/${userData.userData.id}`}>
+            <Link to={`/profil/${userData.userData.id}`}>
               {userData.userData.name.first}{" "}
-            </MenuItem>
+            </Link>
 
             <Button
               onClick={handleLogout}
@@ -133,7 +133,7 @@ const MenuLinks = ({ isOpen }) => {
           </>
         ) : (
           <>
-            <MenuItem to="/inscription">Inscription </MenuItem>
+            <Link to="/inscription">Inscription </Link>
 
             <Button
               as={RouterLink}

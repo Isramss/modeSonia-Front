@@ -49,10 +49,7 @@ function Hero() {
             <Button
               as={RouterLink}
               to="/contact"
-              bg={
-                // "whiteAlpha.300"
-                "white"
-              }
+              bg={"white"}
               rounded={"full"}
               color={"black"}
               _hover={{ bg: "whiteAlpha.500" }}>
