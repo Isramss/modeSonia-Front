@@ -38,7 +38,7 @@ function CreateUser({ reloadUsers }) {
   const handleCreateUser = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:4567/auth/inscription",
+        `${import.meta.env.VITE_API_URL}/auth/inscription`,
         userData
       );
 

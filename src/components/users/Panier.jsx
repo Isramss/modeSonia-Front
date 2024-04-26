@@ -29,7 +29,7 @@ function Panier() {
     const displayCart = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4567/cart/${userData.userData.id}`
+          `${import.meta.env.VITE_API_URL}/cart/${userData.userData.id}`
         );
         setCart(res.data.cartItems);
       } catch (error) {
@@ -43,7 +43,7 @@ function Panier() {
   const deleteToCart = async (caftanId) => {
     try {
       await axios.delete(
-        `http://localhost:4567/cart/${userId}/remove/${caftanId}`
+        `${import.meta.env.VITE_API_URL}/cart/${userId}/remove/${caftanId}`
       );
       const updatedCart = cart.filter((item) => item._id !== caftanId);
       setCart(updatedCart);

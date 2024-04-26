@@ -48,7 +48,7 @@ function FormArticleAdmin({ reloadArticle }) {
         },
       };
       const response = await axios.post(
-        "http://localhost:4567/articles/newarticle",
+        `${import.meta.env.VITE_API_URL}/articles/newarticle`,
         newArticle,
         config
       );

@@ -43,7 +43,7 @@ function PageArticle() {
     const getArticle = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4567/articles/${caftanId}`
+          `${import.meta.env.VITE_API_URL}/articles/${caftanId}`
         );
         setCaftan(res.data);
         // console.log(res.data);
@@ -57,7 +57,7 @@ function PageArticle() {
   const AddToCart = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:4567/cart/${caftanId}/add/${userId}`
+        `${import.meta.env.VITE_API_URL}/cart/${caftanId}/add/${userId}`
       );
       console.log(res.data);
       console.log(userId, caftanId);

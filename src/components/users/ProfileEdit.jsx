@@ -44,7 +44,7 @@ function ProfileEdit() {
           },
         };
         const res = await axios.get(
-          `http://localhost:4567/auth/${userId}`,
+          `${import.meta.env.VITE_API_URL}/auth/${userId}`,
           config
         );
         setUsers(res.data);
@@ -60,7 +60,7 @@ function ProfileEdit() {
   const updateUsers = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:4567/auth/edit/${userId}`,
+        `${import.meta.env.VITE_API_URL}/auth/edit/${userId}`,
         editProfile
       );
 

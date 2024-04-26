@@ -14,7 +14,9 @@ function Caftan() {
   useEffect(() => {
     const displayArticle = async () => {
       try {
-        const response = await axios.get("http://localhost:4567/articles/");
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/articles/`
+        );
         setCaftans(response.data);
       } catch (error) {
         console.error(error);
@@ -42,7 +44,7 @@ function Caftan() {
       };
       const articleToDelete = caftans.find((caftan) => caftan._id === caftanId);
       await axios.delete(
-        `http://localhost:4567/articles/delete/${caftanId}`,
+        `${import.meta.env.VITE_API_URL}/articles/delete/${caftanId}`,
         config
       );
       setCaftans(caftans.filter((caftan) => caftan._id !== caftanId));
@@ -71,7 +73,9 @@ function Caftan() {
         },
       };
       const response = await axios.put(
-        `http://localhost:4567/articles/update/${articleToUpdate._id}`,
+        `${import.meta.env.VITE_API_URL}/articles/update/${
+          articleToUpdate._id
+        }`,
 
         articleToUpdate,
         config

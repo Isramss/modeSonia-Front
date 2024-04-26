@@ -29,7 +29,10 @@ function AdminPage() {
   useEffect(() => {
     const listUser = async () => {
       try {
-        const res = await axios.get("http://localhost:4567/auth/", config);
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/auth/`,
+          config
+        );
         console.log(res.data);
         setUsers(res.data);
       } catch (error) {
@@ -44,7 +47,10 @@ function AdminPage() {
       const userToDelete = users.find((user) => user._id === userId);
       // pour afficher le fullname en visant l'user
 
-      await axios.delete(`http://localhost:4567/auth/delete/${userId}`, config);
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/auth/delete/${userId}`,
+        config
+      );
       setUsers(users.filter((user) => user._id !== userId));
       //la ligne de setUsers => permet de mettre a jour les utilisateurs supprimer avec leurs id
 
@@ -67,7 +73,7 @@ function AdminPage() {
   const updateUsers = async (userToUpdate) => {
     try {
       const res = await axios.put(
-        `http://localhost:4567/auth/edit/${userToUpdate._id}`,
+        `${import.meta.env.VITE_API_URL}/auth/edit/${userToUpdate._id}`,
         userToUpdate,
         config
       );

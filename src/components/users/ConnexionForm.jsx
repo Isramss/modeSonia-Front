@@ -27,10 +27,13 @@ function ConnexionForm() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:4567/auth/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
       console.log(response.data);
       const { token } = response.data;
       const decodedUser = jwtDecode(token);

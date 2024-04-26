@@ -30,7 +30,7 @@ function InscriptionForm() {
   const CreatUser = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:4567/auth/inscription",
+        `${import.meta.env.VITE_API_URL}/auth/inscription`,
         newUser
       );
       Toast({

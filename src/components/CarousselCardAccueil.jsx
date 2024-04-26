@@ -10,7 +10,9 @@ function CarousselCardAccueil() {
   useEffect(() => {
     const displayArticle = async () => {
       try {
-        const response = await axios.get("http://localhost:4567/articles/");
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/articles/`
+        );
         // Pour inverser l'ordre des éléments de la liste
         const reversedCaftans = response.data.reverse();
         // Pour récupérer les trois derniers éléments
