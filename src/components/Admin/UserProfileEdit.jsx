@@ -39,7 +39,7 @@ function UserProfileEdit({ user, isOpen, onClose, onSave }) {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Edit User Profile</ModalHeader>
+        <ModalHeader>Modifier le profile</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <FormControl mt={5}>
@@ -103,9 +103,9 @@ function UserProfileEdit({ user, isOpen, onClose, onSave }) {
                 color: "black",
                 bg: "white",
               }}>
-              Save
+              Enregistrer
             </Button>
-            <Button onClick={handleCancelClick}>Cancel</Button>
+            <Button onClick={handleCancelClick}>Annuler</Button>
           </Box>
         </ModalBody>
       </ModalContent>

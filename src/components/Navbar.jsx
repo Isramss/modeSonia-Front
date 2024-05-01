@@ -72,7 +72,7 @@ const MenuLinks = ({ isOpen }) => {
 
   // Si les données de l'utilisateur existent, récupère l'ID et isAdmin
   const userId = userData ? userData.userData.id : null;
-  const isAdmin = userData ? userData.isAdmin : false;
+  const isAdmin = userData ? userData.userData.isAdmin : false;
   // userDataEmail => Si il y a les données de userData alors tu m'affiche le nom (tout en rentrant dans le model user puis name puis first) sinon tu ne m'affiche rien.
 
   const handleLogout = async () => {
@@ -102,16 +102,12 @@ const MenuLinks = ({ isOpen }) => {
         {userData ? (
           <>
             {!isAdmin ? (
-              <Button
-                as={RouterLink}
-                to={`/panier/${userId}`}
-                bg={"none"}
-                onClick={console.log(userData.id)}>
+              <Button as={RouterLink} to={`/panier/${userId}`} bg={"none"}>
                 <FaBagShopping />
               </Button>
             ) : null}
 
-            <Link to={`/profil/${userId}`} onClick={console.log(userId)}>
+            <Link to={`/profil/${userId}`}>
               {userData.userData.name.first}{" "}
             </Link>
 
