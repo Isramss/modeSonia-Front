@@ -31,7 +31,7 @@ function CarousselCardAccueil() {
         className="Title_bestseller"
         lineHeight={1.2}
         fontSize={useBreakpointValue({ base: "3xl", md: "4xl" })}>
-        Nos Best seller
+        Nos nouveautés
       </Text>
       <Box className="AccueilDisplay">
         {caftans.map((caftan, index) => (

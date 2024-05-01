@@ -59,22 +59,12 @@ const MenuToggle = ({ toggle, isOpen }) => {
   );
 };
 
-// const Link = ({ children, isLast, to = "/", ...rest }) => {
-//   // MenuItem estun composant qu'on rappel plus bas. Ce composant permet d'evter de re mettre link et text pour chaque lien du Menu.
-//   return (
-//     <Link href={to}>
-//       <Text display="block" {...rest}>
-//         {children}
-//       </Text>
-//     </Link>
-//   );
-// };
-
 const MenuLinks = ({ isOpen }) => {
   const navigate = useNavigate();
 
   // la ligne userData => permet de stocker les données dans la valeur userData, grâce à la clé "user".
   const userData = JSON.parse(sessionStorage.getItem("user"));
+  const userId = userData.userData.id;
 
   // userDataEmail => Si il y a les données de userData alors tu m'affiche le nom (tout en rentrant dans le model user puis name puis first) sinon tu ne m'affiche rien.
   const isAdmin = userData ? userData.userData.isAdmin : false;
@@ -106,15 +96,12 @@ const MenuLinks = ({ isOpen }) => {
         {userData ? (
           <>
             {!isAdmin ? (
-              <Button
-                as={RouterLink}
-                to={`/panier/${userData.userData._id}`}
-                bg={"none"}>
+              <Button as={RouterLink} to={`/panier/${userId}`} bg={"none"}>
                 <FaBagShopping />
               </Button>
             ) : null}
 
-            <Link to={`/profil/${userData.userData.id}`}>
+            <Link to={`/profil/${userId}`}>
               {userData.userData.name.first}{" "}
             </Link>
 

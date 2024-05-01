@@ -1,4 +1,4 @@
-import { CloseIcon, DeleteIcon } from "@chakra-ui/icons";
+import { CloseIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -23,6 +23,8 @@ function Panier() {
 
   const userData = JSON.parse(sessionStorage.getItem("user"));
   const userId = userData.userData.id;
+
+  // console.log(userId);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -64,6 +66,27 @@ function Panier() {
     return cart.reduce((acc, article) => acc + article.price, 0).toFixed(2);
   };
 
+  const handlePayment = async () => {
+    try {
+      const lineItems = cart.map((article) => ({
+        articleId: article._id,
+        quantity: article.quantity,
+      }));
+
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/payment/${userData.userData.id}`,
+        { lineItems }
+      );
+
+      const paymentUrl = response.data.url;
+
+      // Navigate to the payment URL in the same page
+      window.location.href = paymentUrl;
+    } catch (error) {
+      console.error("Error fetching payment URL:", error);
+    }
+  };
+
   return (
     <>
       <Container maxW="100%" p={{ base: 5, md: 10 }}>
@@ -89,32 +112,33 @@ function Panier() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {cart.map((caftan, index) => (
-                    <Tr key={`${caftan._id}`} p={6} m={6} rounded={"lg"}>
-                      <CartItem
-                        key={index}
-                        imageURL={caftan.imageURL}
-                        title_Produit={caftan.title_Produit}
-                        price={caftan.price}
-                      />
-                      <th maxW={20}>
-                        {caftan.price} €
-                        <Button
-                          mt={-10}
-                          onClick={() => deleteToCart(caftan._id)}
-                          bg={"none"}
-                          marginLeft={"5px"}
-                          height={"25px"}
-                          color={"red"}
-                          _hover={{
-                            color: "white",
-                            bg: "black",
-                          }}>
-                          <CloseIcon />
-                        </Button>
-                      </th>
-                    </Tr>
-                  ))}
+                  {cart &&
+                    cart.map((caftan, index) => (
+                      <Tr key={`${caftan._id}`} p={6} m={6} rounded={"lg"}>
+                        <CartItem
+                          key={index}
+                          imageURL={caftan.imageURL}
+                          title_Produit={caftan.title_Produit}
+                          price={caftan.price}
+                        />
+                        <th maxW={20}>
+                          {caftan.price} €
+                          <Button
+                            mt={-10}
+                            onClick={() => deleteToCart(caftan._id)}
+                            bg={"none"}
+                            marginLeft={"5px"}
+                            height={"25px"}
+                            color={"red"}
+                            _hover={{
+                              color: "white",
+                              bg: "black",
+                            }}>
+                            <CloseIcon />
+                          </Button>
+                        </th>
+                      </Tr>
+                    ))}
                 </Tbody>
               </Table>
               <div
@@ -137,7 +161,8 @@ function Panier() {
                   _hover={{
                     bg: "white",
                     color: "black",
-                  }}>
+                  }}
+                  onClick={handlePayment}>
                   Procéder au paiement
                 </Button>
               </div>
