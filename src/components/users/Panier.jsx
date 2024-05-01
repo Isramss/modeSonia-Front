@@ -121,7 +121,7 @@ function Panier() {
                           title_Produit={caftan.title_Produit}
                           price={caftan.price}
                         />
-                        <th maxW={20}>
+                        <th maxw={"20px"}>
                           {caftan.price} €
                           <Button
                             mt={-10}
