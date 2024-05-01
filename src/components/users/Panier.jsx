@@ -72,9 +72,9 @@ function Panier() {
         articleId: article._id,
         quantity: article.quantity,
       }));
-
+      console.log(lineItems);
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/payment/${userData.userData.id}`,
+        `${import.meta.env.VITE_API_URL}/payment/${userId}`,
         { lineItems }
       );
 

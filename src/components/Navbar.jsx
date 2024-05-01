@@ -63,11 +63,17 @@ const MenuLinks = ({ isOpen }) => {
   const navigate = useNavigate();
 
   // la ligne userData => permet de stocker les données dans la valeur userData, grâce à la clé "user".
-  const userData = JSON.parse(sessionStorage.getItem("user"));
-  const userId = userData.userData.id;
 
+  // Récupère les données de l'utilisateur depuis sessionStorage
+  const userDataString = sessionStorage.getItem("user");
+
+  // Vérifie si les données de l'utilisateur existent
+  const userData = userDataString ? JSON.parse(userDataString) : null;
+
+  // Si les données de l'utilisateur existent, récupère l'ID et isAdmin
+  const userId = userData ? userData.id : null;
+  const isAdmin = userData ? userData.isAdmin : false;
   // userDataEmail => Si il y a les données de userData alors tu m'affiche le nom (tout en rentrant dans le model user puis name puis first) sinon tu ne m'affiche rien.
-  const isAdmin = userData ? userData.userData.isAdmin : false;
 
   const handleLogout = async () => {
     sessionStorage.removeItem("user");
