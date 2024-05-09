@@ -16,10 +16,12 @@ import {
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 import CartItem from "../Articles/ListPanier";
 
 function Panier() {
-  const [cart, setCart] = useState([]);
+  const { cart, setCart } = useCart();
+  // const [cart, setCart] = useState([]);
 
   const userData = JSON.parse(sessionStorage.getItem("user"));
   const userId = userData.userData.id;
@@ -63,7 +65,9 @@ function Panier() {
     if (!Array.isArray(cart) || cart.length === 0) {
       return 0;
     }
-    return cart.reduce((acc, article) => acc + article.price, 0).toFixed(2);
+    return cart
+      .reduce((acc, article) => acc + article.price * article.quantity, 0)
+      .toFixed(2);
   };
 
   const handlePayment = async () => {
@@ -80,7 +84,7 @@ function Panier() {
 
       const paymentUrl = response.data.url;
 
-      // Navigate to the payment URL in the same page
+      // Naviguer vers l'URL de paiement dans la même page
       window.location.href = paymentUrl;
     } catch (error) {
       console.error("Error fetching payment URL:", error);
@@ -105,7 +109,7 @@ function Panier() {
                 <Thead>
                   <Tr>
                     <Th>Article</Th>
-
+                    <Th>Quantité</Th>
                     <Th display={"flex"} justifyContent={"center"}>
                       Total
                     </Th>
@@ -121,6 +125,7 @@ function Panier() {
                           title_Produit={caftan.title_Produit}
                           price={caftan.price}
                         />
+                        <Th>{caftan.quantity}</Th>
                         <th maxw={"20px"}>
                           {caftan.price} €
                           <Button

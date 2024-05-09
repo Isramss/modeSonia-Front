@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaBagShopping } from "react-icons/fa6";
 import { Box, Flex, Button, Stack } from "@chakra-ui/react";
 import { Link, Link as RouterLink, useNavigate } from "react-router-dom";
+import CountCart from "./users/CountCart";
 // import Panier from "./users/Panier";
 
 const NavBar = (props) => {
@@ -103,7 +104,7 @@ const MenuLinks = ({ isOpen }) => {
           <>
             {!isAdmin ? (
               <Button as={RouterLink} to={`/panier/${userId}`} bg={"none"}>
-                <FaBagShopping />
+                <CountCart />
               </Button>
             ) : null}
 

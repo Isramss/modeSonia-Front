@@ -27,6 +27,7 @@ function FormArticleAdmin({ reloadArticle }) {
     imageURL: "",
     price: "",
     description: "",
+    stock: "",
   });
 
   const handleClose = () => {
@@ -58,6 +59,7 @@ function FormArticleAdmin({ reloadArticle }) {
         imageURL: "",
         price: "",
         description: "",
+        stock: "",
       });
       reloadArticle((prevArticles) => [...prevArticles, response.data]);
       // Réinitialiser le formulaire après la création de l'article
@@ -87,7 +89,9 @@ function FormArticleAdmin({ reloadArticle }) {
           <Modal isOpen={isOpen} onClose={handleClose} size="xl">
             <ModalOverlay
               bg="blackAlpha.300"
-              backdropFilter="blur(3px) hue-rotate(90deg)"
+              backdropFilter="blur(3px) 
+             hue-rotate(20deg)
+              "
             />
             <ModalContent
               // color={"white"}
@@ -150,10 +154,25 @@ function FormArticleAdmin({ reloadArticle }) {
                       }
                     />
                   </FormControl>
+                  <FormControl>
+                    <FormLabel color={"white"}>Quantité :</FormLabel>
+                    <input
+                      type="number"
+                      value={newArticle.stock}
+                      onChange={(e) =>
+                        setNewArticle({ ...newArticle, stock: e.target.value })
+                      }
+                    />
+                  </FormControl>
                 </VStack>
               </ModalBody>
               <ModalFooter padding={"0 24px"}>
-                <Button variant="ghost" onClick={handleClose}>
+                <Button
+                  variant="ghost"
+                  color={"white"}
+                  _hover={{ bg: "black" }}
+                  marginRight={5}
+                  onClick={handleClose}>
                   Annuler
                 </Button>
                 <Button
@@ -162,7 +181,7 @@ function FormArticleAdmin({ reloadArticle }) {
                   _hover={{ bg: "white", color: "black" }}
                   type="Submit"
                   onClick={CreateArticle}>
-                  Send
+                  Enregistrer
                 </Button>
               </ModalFooter>
             </ModalContent>

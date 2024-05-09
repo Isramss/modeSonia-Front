@@ -1,5 +1,4 @@
-import { CloseIcon } from "@chakra-ui/icons";
-import { Heading, Text, Image, Button, Td } from "@chakra-ui/react";
+import { Heading, Text, Image } from "@chakra-ui/react";
 import React from "react";
 
 function CartItem({ imageURL, title_Produit, price }) {

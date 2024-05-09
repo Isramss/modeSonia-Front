@@ -1,3 +1,4 @@
+import { useCart } from "../../context/CartContext";
 import {
   Box,
   Heading,
@@ -31,6 +32,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function PageArticle() {
+  const { cart, setCart } = useCart();
   const [caftan, setCaftan] = useState("");
   const { caftanId } = useParams();
   const toast = useToast();
@@ -38,6 +40,19 @@ function PageArticle() {
   const cancelRef = React.useRef();
   const currentUser = JSON.parse(sessionStorage.getItem("user"));
   const userId = currentUser ? currentUser.userData.id : null;
+  const [quantity, setQuantity] = useState(1); // État pour gérer la quantité d'articles
+
+  // Fonction pour incrémenter la quantité
+  const incrementQuantity = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  // Fonction pour décrémenter la quantité (minimum de 1)
+  const decrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+    }
+  };
 
   useEffect(() => {
     const getArticle = async () => {
@@ -54,14 +69,23 @@ function PageArticle() {
     getArticle();
   }, [caftanId]);
 
-  const AddToCart = async () => {
+  const AddToCart = async (quantity) => {
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/cart/${caftanId}/add/${userId}`
+        `${import.meta.env.VITE_API_URL}/cart/${caftanId}/add/${userId}`,
+        { quantity: quantity }
       );
       console.log(res.data);
       console.log(userId, caftanId);
 
+      const newItem = {
+        _id: caftanId,
+        ...caftan,
+        quantity: quantity,
+      };
+      const updatedCart = [...cart, newItem];
+      // localStorage.setItem("cart", JSON.stringify(updatedCart));
+      setCart(updatedCart);
       toast({
         title: "Article ajouté au panier",
         status: "success",
@@ -81,7 +105,7 @@ function PageArticle() {
 
   const handleClick = () => {
     if (caftanId && userId) {
-      AddToCart();
+      AddToCart(quantity);
     } else {
       console.error("caftanId or userId is undefined");
     }
@@ -126,6 +150,15 @@ function PageArticle() {
           <Text fontSize="md" maxW={"500px"}>
             {caftan.description}
           </Text>
+          <Box>
+            <Button onClick={decrementQuantity} bg={"none"}>
+              -
+            </Button>
+            <span>{quantity}</span>
+            <Button onClick={incrementQuantity} bg={"none"}>
+              +
+            </Button>
+          </Box>
           <Flex
             // width={"100%"}
             justify={"center"}
@@ -215,7 +248,7 @@ function PageArticle() {
                     bg="black"
                     color="white"
                     onClick={() => {
-                      handleClick();
+                      handleClick(1);
                       onClose();
                     }}
                     ml={3}>

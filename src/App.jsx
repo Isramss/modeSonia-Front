@@ -9,6 +9,8 @@ import Footer from "./components/Footer";
 import AdminPage from "./pages/Admin/AdminPage";
 import Pagenotfound from "./pages/Pagenotfound";
 import PageArticle from "./components/Articles/PageProd";
+import SuccessPayment from "./components/Payment/SuccessPayment";
+import ErrorPayment from "./components/Payment/ErrorPayment";
 import Panier from "./components/users/Panier";
 import Apropos from "./pages/Apropos";
 import Profil from "./pages/Profil";
@@ -29,6 +31,8 @@ function App() {
         <Route path="/panier/:userId" element={<Panier />} />
         <Route path="/apropos" element={<Apropos />} />
         <Route path="/profil/:userId" element={<Profil />} />
+        <Route path="/panier/success" element={<SuccessPayment />} />
+        <Route path="/panier/erreur-paiement" element={<ErrorPayment />} />
         <Route path="*" element={<Pagenotfound />} />
       </Routes>
       <Footer />

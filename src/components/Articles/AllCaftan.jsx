@@ -7,6 +7,7 @@ import {
   Button,
   FormControl,
   Input,
+  Heading,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -70,6 +71,7 @@ function AllCaftan({ caftans, deleteArticle, updateArticle }) {
                 zIndex={1}>
                 {isAdmin && editableIndex === index ? (
                   <Box>
+                    <Heading>{caftan.title_Produit}</Heading>
                     <FormControl mt={5}>
                       <Input
                         type="text"
@@ -128,9 +130,9 @@ function AllCaftan({ caftans, deleteArticle, updateArticle }) {
                           color: "black",
                           bg: "white",
                         }}>
-                        Save
+                        Enregistrer
                       </Button>
-                      <Button onClick={handleCancelClick}>Cancel</Button>
+                      <Button onClick={handleCancelClick}>Annuler</Button>
                     </Box>
                   </Box>
                 ) : (
