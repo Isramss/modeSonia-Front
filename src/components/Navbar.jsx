@@ -11,14 +11,16 @@ const NavBar = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <NavBarContainer {...props} bg="#DFCBB7">
-      <Link as={RouterLink} to="/" color={"black"}>
-        ModeSonia
-      </Link>
-      {/* partie menu burger => responsive mobile */}
-      <MenuToggle toggle={toggle} isOpen={isOpen} />
-      <MenuLinks isOpen={isOpen} /> {/* Affiche les liens (accueil ..) */}
-    </NavBarContainer>
+    <Box bg="#DFCBB7" display={"flex"} justifyContent={"center"}>
+      <NavBarContainer {...props} maxW={"1440px"}>
+        <Link as={RouterLink} to="/" color={"black"}>
+          ModeSonia
+        </Link>
+        {/* partie menu burger => responsive mobile */}
+        <MenuToggle toggle={toggle} isOpen={isOpen} />
+        <MenuLinks isOpen={isOpen} /> {/* Affiche les liens (accueil ..) */}
+      </NavBarContainer>
+    </Box>
   );
 };
 
