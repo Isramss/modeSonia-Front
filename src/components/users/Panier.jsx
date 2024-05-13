@@ -94,7 +94,7 @@ function Panier() {
   return (
     <>
       <Container maxW="100%" p={{ base: 5, md: 10 }}>
-        <Center className={"box_panier"}>
+        <Center className={"box_panier"} m={20}>
           {cart.length > 0 ? (
             <Box>
               <Heading
@@ -154,23 +154,32 @@ function Panier() {
                 }}>
                 Sous-total : {totalCart()} €
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  marginTop: "30px",
-                }}>
+              <Box
+                display={"flex"}
+                flexDirection={"column"}
+                justifyContent={"center"}
+                alignItems={"center"}>
                 <Button
+                  mt={"10px"}
                   bg={"black"}
                   color={"white"}
                   _hover={{
                     bg: "white",
                     color: "black",
                   }}
-                  onClick={handlePayment}>
+                  onClick={handlePayment}
+                  maxW={"225px"}>
                   Procéder au paiement
                 </Button>
-              </div>
+                <Button
+                  W={"235px"}
+                  onClick={handleClick}
+                  bg={"none"}
+                  color={"black"}
+                  _hover={{ bg: "non" }}>
+                  Continuez les achats
+                </Button>
+              </Box>
             </Box>
           ) : (
             <Box py={20}>

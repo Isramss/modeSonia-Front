@@ -4,7 +4,7 @@ import {
   Button,
   FormControl,
   FormLabel,
-  Heading,
+  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -88,13 +88,12 @@ function FormArticleAdmin({ reloadArticle }) {
 
           <Modal isOpen={isOpen} onClose={handleClose} size="xl">
             <ModalOverlay
-              bg="blackAlpha.300"
+              bg="##ffffff4d"
               backdropFilter="blur(3px) 
-             hue-rotate(20deg)
+             hue-rotate(10deg)
               "
             />
             <ModalContent
-              // color={"white"}
               maxW={{ base: "90%", md: "50%" }}
               maxH="90vh"
               p={"10px"}
@@ -106,7 +105,7 @@ function FormArticleAdmin({ reloadArticle }) {
                 <VStack spacing={4}>
                   <FormControl onSubmit={CreateArticle}>
                     <FormLabel color={"white"}>Nom de l'article :</FormLabel>
-                    <input
+                    <Input
                       color="black"
                       type="text"
                       value={newArticle.title_Produit}
@@ -120,7 +119,7 @@ function FormArticleAdmin({ reloadArticle }) {
                   </FormControl>
                   <FormControl>
                     <FormLabel color={"white"}>Photo du produit :</FormLabel>
-                    <input
+                    <Input
                       type="url"
                       value={newArticle.imageURL}
                       onChange={(e) =>
@@ -133,7 +132,7 @@ function FormArticleAdmin({ reloadArticle }) {
                   </FormControl>
                   <FormControl>
                     <FormLabel color={"white"}>Prix du produit :</FormLabel>
-                    <input
+                    <Input
                       type="number"
                       value={newArticle.price}
                       onChange={(e) =>
@@ -143,7 +142,7 @@ function FormArticleAdmin({ reloadArticle }) {
                   </FormControl>
                   <FormControl>
                     <FormLabel color={"white"}>Description :</FormLabel>
-                    <input
+                    <Input
                       type="text"
                       value={newArticle.description}
                       onChange={(e) =>
@@ -156,7 +155,7 @@ function FormArticleAdmin({ reloadArticle }) {
                   </FormControl>
                   <FormControl>
                     <FormLabel color={"white"}>Quantité :</FormLabel>
-                    <input
+                    <Input
                       type="number"
                       value={newArticle.stock}
                       onChange={(e) =>
@@ -170,7 +169,7 @@ function FormArticleAdmin({ reloadArticle }) {
                 <Button
                   variant="ghost"
                   color={"white"}
-                  _hover={{ bg: "black" }}
+                  _hover={{ color: "black" }}
                   marginRight={5}
                   onClick={handleClose}>
                   Annuler

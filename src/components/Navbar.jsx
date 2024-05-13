@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaBagShopping } from "react-icons/fa6";
+
 import { Box, Flex, Button, Stack } from "@chakra-ui/react";
 import { Link, Link as RouterLink, useNavigate } from "react-router-dom";
 import CountCart from "./users/CountCart";
@@ -67,7 +67,7 @@ const MenuLinks = ({ isOpen }) => {
 
   // la ligne userData => permet de stocker les données dans la valeur userData, grâce à la clé "user".
 
-  // Récupère les données de l'utilisateur depuis sessionStorage
+  // Récupère les données de l'utilisateur depuis sessionStorageƒ
   const userDataString = sessionStorage.getItem("user");
 
   // Vérifie si les données de l'utilisateur existent
@@ -96,7 +96,7 @@ const MenuLinks = ({ isOpen }) => {
         direction={["column", "row", "row", "row"]}
         pt={[4, 4, 0, 0]}>
         <Link to="/">Accueil</Link>
-        <Link to="/caftan"> Caftan </Link>
+        <Link to="/caftan"> Caftans </Link>
         <Link to="/apropos">À Propos</Link>
 
         {!isAdmin ? <Link to="/contact">Nous contacter </Link> : null}

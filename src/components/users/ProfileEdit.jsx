@@ -101,30 +101,32 @@ function ProfileEdit() {
 
   return (
     <>
-      <Heading
-        className="title_profile"
-        display={"flex"}
-        justifyContent={"center"}>
-        Vos informations personnelles
-      </Heading>
-      <Container maxW="7xl" p={{ base: 5, md: 10 }}>
-        <Center>
-          <Stack spacing={4}>
-            <Box
-              width={{ base: "100%", md: "800px" }}
-              border={"solid 1px"}
-              borderRadius={"10px"}>
-              <Box
-                role={"group"}
-                p={6}
-                bg={useColorModeValue("white", "gray.800")}
-                boxShadow={"2xl"}
-                rounded={"lg"}
-                pos={"relative"}
-                zIndex={1}>
-                {isEditing ? (
-                  <Box>
-                    {/* <FormControl mt={5}>
+      <Box display={"flex"} flexDirection={"column"} alignItems="center">
+        <Box maxW={"1440px"}>
+          <Heading
+            className="title_profile"
+            display={"flex"}
+            justifyContent={"center"}>
+            Vos informations personnelles
+          </Heading>
+          <Container maxW="7xl" p={{ base: 5, md: 10 }}>
+            <Center>
+              <Stack spacing={4}>
+                <Box
+                  width={{ base: "100%", md: "800px" }}
+                  border={"solid 1px"}
+                  borderRadius={"10px"}>
+                  <Box
+                    role={"group"}
+                    p={6}
+                    bg={useColorModeValue("white", "gray.800")}
+                    boxShadow={"2xl"}
+                    rounded={"lg"}
+                    pos={"relative"}
+                    zIndex={1}>
+                    {isEditing ? (
+                      <Box>
+                        {/* <FormControl mt={5}>
                       <Input
                         type="name"
                         value={editProfile.name}
@@ -136,98 +138,100 @@ function ProfileEdit() {
                         }
                       />
                     </FormControl> */}
-                    <Heading>E-mail :</Heading>
-                    <FormControl mt={5}>
-                      <Input
-                        type="email"
-                        value={editProfile.email}
-                        onChange={(e) =>
-                          setEditProfile({
-                            ...editProfile,
-                            email: e.target.value,
-                          })
-                        }
-                      />
-                    </FormControl>
-                    <Heading mt={5}>Adresse :</Heading>
-                    <FormControl mt={5}>
-                      <Input
-                        type="address"
-                        value={editProfile.address}
-                        onChange={(e) =>
-                          setEditProfile({
-                            ...editProfile,
-                            address: e.target.value,
-                          })
-                        }
-                      />
-                    </FormControl>
-                    <Heading mt={5}>Code Postal :</Heading>
-                    <FormControl mt={5}>
-                      <Input
-                        type="number"
-                        value={editProfile.zipcode}
-                        onChange={(e) =>
-                          setEditProfile({
-                            ...editProfile,
-                            zipcode: e.target.value,
-                          })
-                        }
-                      />
-                    </FormControl>
-                    <Box mt={10}>
-                      <Button
-                        onClick={handleSaveClick}
-                        bg="black"
-                        color="white"
-                        mr={3}
-                        _hover={{
-                          color: "black",
-                          bg: "white",
-                        }}>
-                        Enregistrer
-                      </Button>
-                      <Button onClick={handleCancelClick}>Annuler</Button>
-                    </Box>
+                        <Heading>E-mail :</Heading>
+                        <FormControl mt={5}>
+                          <Input
+                            type="email"
+                            value={editProfile.email}
+                            onChange={(e) =>
+                              setEditProfile({
+                                ...editProfile,
+                                email: e.target.value,
+                              })
+                            }
+                          />
+                        </FormControl>
+                        <Heading mt={5}>Adresse :</Heading>
+                        <FormControl mt={5}>
+                          <Input
+                            type="address"
+                            value={editProfile.address}
+                            onChange={(e) =>
+                              setEditProfile({
+                                ...editProfile,
+                                address: e.target.value,
+                              })
+                            }
+                          />
+                        </FormControl>
+                        <Heading mt={5}>Code Postal :</Heading>
+                        <FormControl mt={5}>
+                          <Input
+                            type="number"
+                            value={editProfile.zipcode}
+                            onChange={(e) =>
+                              setEditProfile({
+                                ...editProfile,
+                                zipcode: e.target.value,
+                              })
+                            }
+                          />
+                        </FormControl>
+                        <Box mt={10}>
+                          <Button
+                            onClick={handleSaveClick}
+                            bg="black"
+                            color="white"
+                            mr={3}
+                            _hover={{
+                              color: "black",
+                              bg: "white",
+                            }}>
+                            Enregistrer
+                          </Button>
+                          <Button onClick={handleCancelClick}>Annuler</Button>
+                        </Box>
+                      </Box>
+                    ) : (
+                      <>
+                        <Heading>E-mail :</Heading>
+                        <FormLabel fontSize={20} mt={5}>
+                          {editProfile.email}
+                        </FormLabel>
+                        <Divider />
+                        <Heading mt={5}>Adresse :</Heading>
+                        <FormLabel fontSize={20} mt={5}>
+                          {editProfile.address}
+                        </FormLabel>
+                        <Divider />
+                        <Heading mt={5}>Code Postal :</Heading>
+                        <FormLabel fontSize={20} mt={5}>
+                          {editProfile.zipcode}
+                        </FormLabel>
+                        <Divider />
+                        <Stack display={"row"} pb="10px" cursor="pointer">
+                          <Button
+                            mt={5}
+                            onClick={handleEditClick}
+                            bg={"black"}
+                            height={"25px"}
+                            color={"white"}
+                            _hover={{
+                              color: "black",
+                              bg: "none",
+                            }}>
+                            <EditIcon />
+                          </Button>
+                        </Stack>
+                      </>
+                    )}
                   </Box>
-                ) : (
-                  <>
-                    <Heading>E-mail :</Heading>
-                    <FormLabel fontSize={20} mt={5}>
-                      {editProfile.email}
-                    </FormLabel>
-                    <Divider />
-                    <Heading mt={5}>Adresse :</Heading>
-                    <FormLabel fontSize={20} mt={5}>
-                      {editProfile.address}
-                    </FormLabel>
-                    <Divider />
-                    <Heading mt={5}>Code Postal :</Heading>
-                    <FormLabel fontSize={20} mt={5}>
-                      {editProfile.zipcode}
-                    </FormLabel>
-                    <Divider />
-                    <Stack display={"row"} pb="10px" cursor="pointer">
-                      <Button
-                        mt={5}
-                        onClick={handleEditClick}
-                        bg={"black"}
-                        height={"25px"}
-                        color={"white"}
-                        _hover={{
-                          color: "black",
-                          bg: "none",
-                        }}>
-                        <EditIcon />
-                      </Button>
-                    </Stack>
-                  </>
-                )}
-              </Box>
-            </Box>
-          </Stack>
-        </Center>
-      </Container>
+                </Box>
+              </Stack>
+            </Center>
+          </Container>
+        </Box>
+      </Box>
     </>
   );
 }

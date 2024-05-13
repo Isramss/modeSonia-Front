@@ -14,12 +14,15 @@ import ErrorPayment from "./components/Payment/ErrorPayment";
 import Panier from "./components/users/Panier";
 import Apropos from "./pages/Apropos";
 import Profil from "./pages/Profil";
+
+import ScrollToTopButton from "./components/ScrollToTopButton";
 import "./App.css";
 
 function App() {
   return (
     <Router>
       <Navbar />
+      <ScrollToTopButton />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/caftan" element={<Caftan />} />

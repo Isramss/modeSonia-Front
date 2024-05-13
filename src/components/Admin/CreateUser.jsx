@@ -93,8 +93,8 @@ function CreateUser({ reloadUsers }) {
 
       <Modal isOpen={isOpen} onClose={handleClose} size="xl">
         <ModalOverlay
-          bg="blackAlpha.300"
-          backdropFilter="blur(3px) hue-rotate(90deg)"
+          bg="##ffffff4d"
+          backdropFilter="blur(3px) hue-rotate(20deg)"
         />
         <ModalContent
           maxW={{ base: "90%", md: "50%" }}
@@ -102,12 +102,12 @@ function CreateUser({ reloadUsers }) {
           p={"10px"}
           className="form_modal"
           bg={"#0000003c"}>
-          <ModalHeader>Créer un utilisateur</ModalHeader>
+          <ModalHeader color={"white"}>Créer un utilisateur</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <VStack spacing={4}>
               <FormControl id="name" isRequired>
-                <FormLabel>Prénom :</FormLabel>
+                <FormLabel color={"white"}>Prénom :</FormLabel>
                 <Input
                   type="text"
                   placeholder="Entrez votre prénom"
@@ -182,7 +182,11 @@ function CreateUser({ reloadUsers }) {
             </VStack>
           </ModalBody>
           <ModalFooter padding={"0 24px"}>
-            <Button variant="ghost" onClick={handleClose}>
+            <Button
+              variant="ghost"
+              onClick={handleClose}
+              color={"white"}
+              _hover={{ color: "black" }}>
               Annuler
             </Button>
             <Button

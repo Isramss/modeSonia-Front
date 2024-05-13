@@ -51,7 +51,7 @@ const Footer = () => {
               </Text>
               <VStack spacing={2} alignItems="flex-start" color="#b5b3b3">
                 <Link as={RouterLink} to={"/caftan"}>
-                  Caftan
+                  Caftans
                 </Link>
                 <Link as={RouterLink} to={"/apropos"}>
                   A Propos{" "}

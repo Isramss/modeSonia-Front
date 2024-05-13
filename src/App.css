@@ -177,6 +177,23 @@ Link {
   backdrop-filter: blur(15px);
 }
 
+/* Page Produit individuel*/
+
+.css-ujfbxg {
+  max-width: 500px !important;
+}
+.css-1hmdc9i {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* @media screen and (max-width: 750px) { */
+/* Image */
+/* .css-1sr2rhu {
+    margin: 0px !important;
+  }
+} */
+
 /* Footer */
 
 .BOX_footer {
@@ -212,4 +229,40 @@ Link {
   justify-content: center;
   align-items: center;
   margin-top: 10px;
+}
+
+/* ScrollToTopButton */
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 350px;
+  right: 20px;
+  transition: opacity 0.3s;
+  opacity: 0;
+  z-index: 999;
+}
+
+.btn_scroll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+}
+
+.scroll-to-top button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.scroll-to-top button:hover {
+  background-color: #555;
 }
