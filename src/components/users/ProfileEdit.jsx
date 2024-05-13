@@ -113,7 +113,7 @@ function ProfileEdit() {
             <Center>
               <Stack spacing={4}>
                 <Box
-                  width={{ base: "100%", md: "800px" }}
+                  width={{ base: "100%", md: "650px" }}
                   border={"solid 1px"}
                   borderRadius={"10px"}>
                   <Box

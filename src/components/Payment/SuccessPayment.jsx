@@ -56,30 +56,13 @@
 
 import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-import React, { useEffect } from "react";
-import axios from "axios";
+
+import React from "react";
 
 function SuccessPayment() {
   const userDataString = sessionStorage.getItem("user");
   const userData = userDataString ? JSON.parse(userDataString) : null;
   const userId = userData ? userData.userData.id : null;
-
-  useEffect(() => {
-    clearCart();
-  }, []);
-
-  const clearCart = () => {
-    // requête DELETE pour vider le panier
-    axios
-      .delete(`${import.meta.env.VITE_API_URL}/cart/${userId}/clear`)
-      .then((response) => {
-        console.log(response.data.message);
-      })
-      .catch((error) => {
-        console.error("Error clearing cart:", error);
-      });
-  };
-
   return (
     <>
       <Box m={"20px"}>

@@ -172,7 +172,7 @@ function Panier() {
                   Procéder au paiement
                 </Button>
                 <Button
-                  W={"235px"}
+                  // W={"235px"}
                   onClick={handleClick}
                   bg={"none"}
                   color={"black"}
